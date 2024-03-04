@@ -4,10 +4,12 @@
 \alias{py_setup}
 \title{Python Set Up}
 \usage{
-py_setup(path_to_env)
+py_setup(path_to_env, force = FALSE)
 }
 \arguments{
 \item{path_to_env}{The path to the miniconda environment}
+
+\item{force}{Whether to force an a new install of minoconda}
 }
 \description{
 The function sets up a miniconda environment at \code{path_to_env}
