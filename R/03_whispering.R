@@ -11,7 +11,7 @@
 #'
 #' @export
 whispering <- function(wav_file, final_ch1, model_type = "base"){
-  replicate::repl_python(input = glue::glue('
+  reticulate::repl_python(input = glue::glue('
   import whisper
 
   # channel 1
