@@ -12,14 +12,12 @@ split_channels <- function(wav_file){
   reticulate::repl_python(input = glue::glue('
   import wave
   import numpy as np
-
   def save_wav_channel(fn, wav, channel):
       # Read data
       nch   = wav.getnchannels()
       depth = wav.getsampwidth()
       wav.setpos(0)
       sdata = wav.readframes(wav.getnframes())
-
       # Extract channel data (24-bit data not supported)
       typ = { 1: np.uint8, 2: np.uint16, 4: np.uint32 }.get(depth)
       if not typ:
@@ -29,14 +27,12 @@ split_channels <- function(wav_file){
       print ("Extracting channel {} out of {} channels, {}-bit depth".format(channel+1, nch, depth*8))
       data = np.frombuffer(sdata, dtype=typ)
       ch_data = data[channel::nch]
-
       # Save channel to a separate file
       outwav = wave.open(fn, "w")
       outwav.setparams(wav.getparams())
       outwav.setnchannels(1)
       outwav.writeframes(ch_data.tobytes())
       outwav.close()
-
   WAV_FILENAME = "{[wav_file]}"
   ch1 = WAV_FILENAME.replace(".", "_ch1.")
   ch2 = WAV_FILENAME.replace(".", "_ch2.")

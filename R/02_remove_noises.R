@@ -16,34 +16,25 @@ remove_noises <- function(ch1, ch2){
   import soundfile as sf
   import numpy as np
   import zlib
-
+  from pydub import AudioSegment
   # Load audio files for channel 1 and channel 2
   channel1_audio, sr1 = librosa.load("{[ch1]}", sr=None)
   channel2_audio, sr2 = librosa.load("{[ch2]}", sr=None)
-
   # Ensure both channels have the same sample rate
   if sr1 != sr2:
       channel1_audio = librosa.resample(channel1_audio, sr1, sr2)
-
   # Calculate the maximum amplitude of channel 2
   max_amplitude_channel2 = np.max(np.abs(channel2_audio))
-
   # Set a threshold for attenuation (adjust as needed)
   attenuation_factor = 0.5
-
   # Remove sounds from channel 1 that are in channel 2
   channel1_audio_cleaned = (channel1_audio) * (np.abs(channel2_audio) / max_amplitude_channel2 <= attenuation_factor)
-
   # center and standardize
   channel1_audio_cleaned -= np.mean(channel1_audio_cleaned)
   channel1_audio_cleaned = channel1_audio_cleaned.astype(np.float32)
   channel1_audio_cleaned /= np.max(np.abs(channel1_audio_cleaned))
-
   # Save the cleaned audio to a new file
   sf.write(ch1.replace(".", "_cleaned."), channel1_audio_cleaned, sr2)
-
-  from pydub import AudioSegment
-
   def remove_noise_and_trim(input_audio_file, output_audio_file, noise_threshold=500, ms=500):
       # Load the input audio file
       audio = AudioSegment.from_file(input_audio_file)
@@ -80,7 +71,6 @@ remove_noises <- function(ch1, ch2){
                audio_without_noise += silence
       # Export the filtered audio to a new file
       audio_without_noise.export(output_audio_file, format="wav")
-
   final_ch1 = ch1.replace(".", "_cleaned.")
   silence_threshold = 700
   ms = 500
