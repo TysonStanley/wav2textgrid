@@ -11,18 +11,11 @@
 #'
 #' @export
 whispering <- function(wav_file, final_ch1, model_type = "base"){
-  reticulate::repl_python(input = glue::glue('
-  import whisper
 
-  # channel 1
-  model = whisper.load_model("{[model_type]}")
-  result1 = model.transcribe("{[final_ch1]}", fp16 = False)
-  # full file
-  result_full = model.transcribe("{[wav_file]}", fp16 = False)
-  ',
-  .open = "{[",
-  .close = "]}"
-  ))
+  whisper = reticulate::import('whisper')
+  model = whisper$load_model("base")
+  result1 = model$transcribe(final_ch1, fp16 = FALSE)
+  result_full = model$transcribe(wav_file, fp16 = FALSE)
 
-  return(list(py$result_full, py$result1))
+  return(list(result_full, result1))
 }
