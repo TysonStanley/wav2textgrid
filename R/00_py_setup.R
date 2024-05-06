@@ -9,15 +9,12 @@
 #'
 #' @export
 py_setup <- function(path_to_env, force = FALSE){
-  # Set Up Python
-  path = file.path(path_to_env, "r-py-automate")
-  reticulate::install_miniconda(path, force = force)
-  reticulate::use_miniconda(path)
-  reticulate::conda_install(envname = path, packages = "nomkl")
-  packages = c("ffmpeg-python", "numpy", "scipy", "setuptools-rust", "pydub", "llvmlite", "librosa", "numba",
-               "Cmake", "wheel", "setuptools-rust", "pytorch", "torchvision")
-  reticulate::conda_install(envname = path, packages = packages)
-  reticulate::py_install("openai-whisper", pip = TRUE, pip_options = "-U")
-  #reticulate::py_install("pyannote.audio", pip = TRUE, pip_options = "-U")
-  #reticulate::py_install("light-the-torch", pip = TRUE, pip_options = "-U")
+  # reticulate::miniconda_uninstall()
+  # reticulate::install_miniconda()
+  reticulate::use_miniconda("/Users/tysonbarrett/Library/r-miniconda-arm64")
+  # packages = c("ffmpeg-python", "numpy", "scipy", "setuptools-rust", "pydub", "llvmlite", "librosa", "numba",
+  #              "Cmake", "wheel", "setuptools-rust", "pytorch", "torchvision")
+  # reticulate::conda_install(envname = "~/Desktop/Automation/r-py-automate", packages = packages)
+  # reticulate::py_install("openai-whisper", pip = TRUE, pip_options = "-U")
+  # reticulate::py_install("light-the-torch", pip = TRUE, pip_options = "-U")
 }

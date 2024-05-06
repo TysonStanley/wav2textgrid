@@ -1,19 +1,18 @@
 #' @title Make TextGrid
 #'
-#' @description Takes all of the results and formats it into a TextGrid.
+#' @description Cleans up the data produced by Whisper and the dominant channel analysis.
 #'
-#' @param data The finalized data from the `clean_up()` function
-#' @param wav_file The path to the wav file
+#' @param data cleaned data from clean_up().
+#' @param wav_file The wave file
 #'
 #' @importFrom stringr str_remove
 #'
 #' @export
 make_textgrid <- function(data, wav_file){
-
   textgrid_header <- paste0(
     'File type = "ooTextFile"\n',
     'Object class = "TextGrid"\n\nxmin = 0\n',
-    'xmax = ', max(data$end), '\n',
+    'xmax = ', max(data$tier_xmax, na.rm=TRUE), '\n',
     'tiers? <exists>\n',
     'size = 2\nitem []:\n'
   )
@@ -25,7 +24,7 @@ make_textgrid <- function(data, wav_file){
 
     textgrid_channel_start = paste0(
       sprintf('    item [%d]:\n', chan),
-      sprintf('        class = "IntervalTier"\n        name = "%s"\n        xmin = %f\n        xmax = %f\n', chan_name, min(data$start), max(data$end)),
+      sprintf('        class = "IntervalTier"\n        name = "%s"\n        xmin = %f\n        xmax = %f\n', chan_name, min(data$start, na.rm = TRUE), max(data$end, na.rm = TRUE)),
       '        intervals: size = ', nrow(d_chan), '\n'
     )
 
@@ -45,7 +44,7 @@ make_textgrid <- function(data, wav_file){
   textgrid <- paste0(textgrid_header, do.call("paste0", chan_texgrid))
 
   # Save the TextGrid to a file
-  writeLines(textgrid, paste0(stringr::str_remove(wav_file, "\\.wav"), "_output.TextGrid"))
+  writeLines(textgrid, paste0(str_remove(wav_file, "\\.wav"), "_output.TextGrid"))
   #cat(textgrid)
-  cat("\nWritten to", paste0(stringr::str_remove(wav_file, "\\.wav"), "_output.TextGrid"))
+  message("\nWritten to", paste0(str_remove(wav_file, "\\.wav"), "_output.TextGrid"))
 }

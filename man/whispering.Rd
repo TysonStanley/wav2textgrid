@@ -4,12 +4,14 @@
 \alias{whispering}
 \title{Whisper Transcription}
 \usage{
-whispering(wav_file, final_ch1, model_type = "base")
+whispering(ch1, ch2, folder, model_type = "base")
 }
 \arguments{
-\item{wav_file}{the original \code{wav_file} path}
+\item{ch1}{channel 1 file}
 
-\item{final_ch1}{channel 1 path after the cleaning from \code{remove_noises()}}
+\item{ch2}{channel 2 file}
+
+\item{folder}{folder of the files}
 
 \item{model_type}{the type of Whisper model to run, default is "base"}
 }

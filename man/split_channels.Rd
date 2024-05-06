@@ -2,12 +2,16 @@
 % Please edit documentation in R/01_split_channels.R
 \name{split_channels}
 \alias{split_channels}
-\title{split_channels}
+\title{Split Channels}
 \usage{
-split_channels(wav_file)
+split_channels(wav_file, threshold = 200, plot = FALSE)
 }
 \arguments{
 \item{wav_file}{The path to the wav file}
+
+\item{threshold}{noise level for removal}
+
+\item{plot}{should the tuneR::plot() be made for each channel? Default is FALSE.}
 }
 \description{
 Splits the wav file into the two channels
