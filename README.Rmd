@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/TysonStanley/wav2textgrid/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/TysonStanley/wav2textgrid/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of wav2textgrid is to ...
+The goal of wav2textgrid is to take a two channel `wav` file of a conversation and turn it into a transcribed textgrid ready for further analysis in R or Praat.
 
 ## Installation
 
@@ -36,23 +36,10 @@ devtools::install_github("TysonStanley/wav2textgrid")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval=FALSE}
 library(wav2textgrid)
-## basic example code
+wav_file = "conversaton1.wav"
+auto_textgrid(wav_file)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+The output is a textgrid that can be loaded directly into Praat or can be read into R via `readtextgrid` package.
