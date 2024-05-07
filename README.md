@@ -31,6 +31,15 @@ devtools::install_github("TysonStanley/wav2textgrid")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
+# wav2textgrid relies on the python (the OpenAI whisper model)
+reticulate::use_miniconda("path/r-miniconda-arm64")
+# if the following python packages are not installed, use:
+# packages = c("ffmpeg-python", "numpy", "scipy", "setuptools-rust", "pydub", "llvmlite", "librosa", "numba",
+#              "Cmake", "wheel", "setuptools-rust", "pytorch", "torchvision")
+# reticulate::conda_install(envname = "~/Desktop/Automation/r-py-automate", packages = packages)
+# reticulate::py_install("openai-whisper", pip = TRUE, pip_options = "-U")
+# reticulate::py_install("light-the-torch", pip = TRUE, pip_options = "-U")
+
 library(wav2textgrid)
 wav_file = "conversaton1.wav"
 auto_textgrid(wav_file)
