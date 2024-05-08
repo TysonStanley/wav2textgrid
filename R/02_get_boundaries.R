@@ -3,13 +3,17 @@
 #' @description Uses Praat to find boundaries of speaking turns.
 #'
 #' @param folder the folder where the wav_file is located
+#' @param min_pitch Minimum pitch (Hz)
+#' @param time_step Time step (s)
 #' @param threshold silence threshold, default is -45
+#' @param min_silent_int Minimum silent interval (s)
+#' @param min_sound_int Minimum sounding interval (s)
 #'
 #' @importFrom speakr praat_run
 #' @importFrom glue glue
 #'
 #' @export
-get_boundaries <- function(folder, threshold = -45){
+get_boundaries <- function(folder, min_pitch, time_step, threshold, min_silent_int, min_sound_int){
   # the parameters for the To TextGrid command:
   #   Minimum pitch (Hz)
   #   Time step (s)
@@ -34,7 +38,7 @@ endform"})
   script <- glue::glue(script, '\n', "    current_file$ = Get string... x")
   script <- glue::glue(script, '\n', "    Read from file... 'directory$''current_file$'")
   script <- glue::glue(script, '\n', "    if anotate_silences = 1")
-  script <- glue::glue(script, '\n', '        To TextGrid (silences): 100, 0, {threshold}, 0.5, 0.1, "silence", "sounding"')
+  script <- glue::glue(script, '\n', '        To TextGrid (silences): {min_pitch}, {time_step}, {threshold}, {min_silent_int}, {min_sound_int}, "silence", "sounding"')
   script <- glue::glue(script, '\n', "        Write to text file... 'directory$''current_file$'_silences.TextGrid")
   script <- glue::glue(script, '\n', "    endif")
   script <- glue::glue(script, '\n', "endfor")

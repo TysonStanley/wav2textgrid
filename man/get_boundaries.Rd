@@ -4,12 +4,27 @@
 \alias{get_boundaries}
 \title{Get Boundaries}
 \usage{
-get_boundaries(folder, threshold = -45)
+get_boundaries(
+  folder,
+  min_pitch,
+  time_step,
+  threshold,
+  min_silent_int,
+  min_sound_int
+)
 }
 \arguments{
 \item{folder}{the folder where the wav_file is located}
 
+\item{min_pitch}{Minimum pitch (Hz)}
+
+\item{time_step}{Time step (s)}
+
 \item{threshold}{silence threshold, default is -45}
+
+\item{min_silent_int}{Minimum silent interval (s)}
+
+\item{min_sound_int}{Minimum sounding interval (s)}
 }
 \description{
 Uses Praat to find boundaries of speaking turns.

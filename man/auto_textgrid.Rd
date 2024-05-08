@@ -4,10 +4,27 @@
 \alias{auto_textgrid}
 \title{Automate TextGrid}
 \usage{
-auto_textgrid(wav_file)
+auto_textgrid(
+  wav_file,
+  min_pitch = 100,
+  time_step = 0,
+  threshold = -45,
+  min_silent_int = 0.5,
+  min_sound_int = 0.1
+)
 }
 \arguments{
 \item{wav_file}{The path to the wav file}
+
+\item{min_pitch}{Minimum pitch (Hz)}
+
+\item{time_step}{Time step (s)}
+
+\item{threshold}{silence threshold, default is -45}
+
+\item{min_silent_int}{Minimum silent interval (s)}
+
+\item{min_sound_int}{Minimum sounding interval (s)}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a
