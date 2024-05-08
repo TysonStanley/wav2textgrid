@@ -32,7 +32,7 @@ clean_up <- function(whispered1, whispered2, folder){
       text = chan1[[.x]]$text
     )
   })
-  channel1 = do.call("bind_rows", channel1)
+  channel1 = data.table::rbindlist(channel1, fill = TRUE)
   channel1$text = tolower(channel1$text)
 
   # create tibble channel 2
@@ -44,7 +44,7 @@ clean_up <- function(whispered1, whispered2, folder){
       text = chan2[[.x]]$text
     )
   })
-  channel2 = do.call("bind_rows", channel2)
+  channel2 = data.table::rbindlist(channel2, fill = TRUE)
   channel2$text = tolower(channel2$text)
 
   data.table::setDT(channel1)
