@@ -9,6 +9,7 @@
 #' @param threshold silence threshold, default is -45
 #' @param min_silent_int Minimum silent interval (s)
 #' @param min_sound_int Minimum sounding interval (s)
+#' @param model_type the Whisper model type to use, default is "base". Other options are in order of complexity: tiny, base, small, medium, and large (see https://github.com/openai/whisper/blob/main/model-card.md).
 #'
 #' @importFrom fs path_split
 #' @importFrom fs dir_ls
@@ -18,7 +19,7 @@
 #' @importFrom fs dir_delete
 #'
 #' @export
-auto_textgrid <- function(wav_file, min_pitch = 100, time_step = 0.0, threshold = -45, min_silent_int = 0.5, min_sound_int = 0.1){
+auto_textgrid <- function(wav_file, min_pitch = 100, time_step = 0.0, threshold = -45, min_silent_int = 0.5, min_sound_int = 0.1, model_type = "base"){
   # Step 1
   message("Step 1 of 5...")
   step1 = split_channels(wav_file, threshold = 200, plot = TRUE)
@@ -42,7 +43,7 @@ auto_textgrid <- function(wav_file, min_pitch = 100, time_step = 0.0, threshold 
 
   # Step 3
   message("Step 3 of 5...")
-  whispered = whispering(step1[1], step1[2], folder = folder)
+  whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type)
 
   # Step 4
   message("\nStep 4 of 5...")

@@ -37,8 +37,8 @@ split_channels <- function(wav_file, threshold = 200, plot = FALSE){
   if (plot) tuneR::plot(left); tuneR::plot(right)
 
   # save channeled wav files
-  ch1 <- stringr::str_replace(wav_file, ".wav", "_ch1.wav")
-  ch2 <- stringr::str_replace(wav_file, ".wav", "_ch2.wav")
+  ch1 <- stringr::str_replace(wav_file, "\\.wav$", "_ch1.wav")
+  ch2 <- stringr::str_replace(wav_file, "\\.wav$", "_ch2.wav")
   tuneR::writeWave(left, ch1)
   tuneR::writeWave(right, ch2)
 

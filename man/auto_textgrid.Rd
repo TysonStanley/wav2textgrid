@@ -10,7 +10,8 @@ auto_textgrid(
   time_step = 0,
   threshold = -45,
   min_silent_int = 0.5,
-  min_sound_int = 0.1
+  min_sound_int = 0.1,
+  model_type = "base"
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ auto_textgrid(
 \item{min_silent_int}{Minimum silent interval (s)}
 
 \item{min_sound_int}{Minimum sounding interval (s)}
+
+\item{model_type}{the Whisper model type to use, default is "base". Other options are in order of complexity: tiny, base, small, medium, and large (see https://github.com/openai/whisper/blob/main/model-card.md).}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a
