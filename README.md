@@ -41,9 +41,37 @@ reticulate::use_miniconda("path/r-miniconda-arm64")
 # reticulate::py_install("light-the-torch", pip = TRUE, pip_options = "-U")
 
 library(wav2textgrid)
-wav_file = "conversaton1.wav"
+wav_file = "data/example.wav"
 auto_textgrid(wav_file)
 ```
 
+    #> Step 1 of 5...
+    #> Step 2 of 5...
+    #> Step 3 of 5...
+    #> Started channel 1 transcription...
+    #>  67 of 67 segments complete for channel 1
+    #> Started channel 2 transcription...
+    #>  68 of 68 segments complete for channel 2
+    #> Step 4 of 5...
+    #> Step 5 of 5...
+    #> Written to path/example_output.TextGrid
+
 The output is a textgrid that can be loaded directly into Praat or can
-be read into R via `readtextgrid` package.
+be read into R via `readtextgrid` package. For the wav file in the
+`inst/extdata` folder, running the code above gives us the following
+TextGrid (as shown by reading it in using `readtextgrid`).
+
+    #> # A tibble: 272 × 6
+    #>    tier_num tier_xmin tier_xmax  xmin  xmax text                                
+    #>       <dbl>     <dbl>     <dbl> <dbl> <dbl> <chr>                               
+    #>  1        1         0      281.  0     1.54 n                                   
+    #>  2        1         0      281.  1.54  4.53 i am participant one on channel one 
+    #>  3        1         0      281.  4.53  8.44 n                                   
+    #>  4        1         0      281.  8.44 11.9  okay you want to start in the top l…
+    #>  5        1         0      281. 11.9  15.5  n                                   
+    #>  6        1         0      281. 15.5  15.7  thank you                           
+    #>  7        1         0      281. 15.7  17.9  n                                   
+    #>  8        1         0      281. 17.9  19.4  mine says peggy's so                
+    #>  9        1         0      281. 19.4  22.4  n                                   
+    #> 10        1         0      281. 22.4  22.7  yeah                                
+    #> # ℹ 262 more rows
