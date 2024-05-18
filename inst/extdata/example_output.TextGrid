@@ -1,0 +1,1109 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0
+xmax = 280.739160997732
+tiers? <exists>
+size = 2
+item []:
+    item [1]:
+        class = "IntervalTier"
+        name = "one"
+        xmin = 0.000000
+        xmax = 280.739161
+        intervals: size = 135
+        intervals [1]:
+            xmin = 0.000000
+            xmax = 1.537580
+            text = "n"
+        intervals [2]:
+            xmin = 1.537580
+            xmax = 4.529580
+            text = "i am participant one on channel one"
+        intervals [3]:
+            xmin = 4.529580
+            xmax = 8.441580
+            text = "n"
+        intervals [4]:
+            xmin = 8.441580
+            xmax = 11.857580
+            text = "okay you want to start in the top left corner"
+        intervals [5]:
+            xmin = 11.857580
+            xmax = 15.497580
+            text = "n"
+        intervals [6]:
+            xmin = 15.497580
+            xmax = 15.697580
+            text = "thank you"
+        intervals [7]:
+            xmin = 15.697580
+            xmax = 17.873580
+            text = "n"
+        intervals [8]:
+            xmin = 17.873580
+            xmax = 19.449580
+            text = "mine says peggy's so"
+        intervals [9]:
+            xmin = 19.449580
+            xmax = 22.441580
+            text = "n"
+        intervals [10]:
+            xmin = 22.441580
+            xmax = 22.737580
+            text = "yeah"
+        intervals [11]:
+            xmin = 22.737580
+            xmax = 23.361580
+            text = "n"
+        intervals [12]:
+            xmin = 23.361580
+            xmax = 23.505580
+            text = "you"
+        intervals [13]:
+            xmin = 23.505580
+            xmax = 24.337580
+            text = "n"
+        intervals [14]:
+            xmin = 24.337580
+            xmax = 25.873580
+            text = "and then i have another towel that"
+        intervals [15]:
+            xmin = 25.873580
+            xmax = 26.409580
+            text = "n"
+        intervals [16]:
+            xmin = 26.409580
+            xmax = 28.457580
+            text = "i mean off the dog is pulling it off"
+        intervals [17]:
+            xmin = 28.457580
+            xmax = 31.401580
+            text = "n"
+        intervals [18]:
+            xmin = 31.401580
+            xmax = 32.137580
+            text = "two differences"
+        intervals [19]:
+            xmin = 32.137580
+            xmax = 32.809580
+            text = "n"
+        intervals [20]:
+            xmin = 32.809580
+            xmax = 38.049580
+            text = "and then i have a will barrow and there's a pig eating things that fell out of the will barrow"
+        intervals [21]:
+            xmin = 38.049580
+            xmax = 42.729580
+            text = "n"
+        intervals [22]:
+            xmin = 42.729580
+            xmax = 42.985580
+            text = "okay"
+        intervals [23]:
+            xmin = 42.985580
+            xmax = 43.793580
+            text = "n"
+        intervals [24]:
+            xmin = 43.793580
+            xmax = 46.305580
+            text = "and has three little green things on the ground"
+        intervals [25]:
+            xmin = 46.305580
+            xmax = 52.697580
+            text = "n"
+        intervals [26]:
+            xmin = 52.697580
+            xmax = 55.593580
+            text = "yes the guy in the red hat is pie"
+        intervals [27]:
+            xmin = 55.593580
+            xmax = 62.417580
+            text = "n"
+        intervals [28]:
+            xmin = 62.417580
+            xmax = 62.529580
+            text = "thank you"
+        intervals [29]:
+            xmin = 62.529580
+            xmax = 63.065580
+            text = "n"
+        intervals [30]:
+            xmin = 63.065580
+            xmax = 63.305580
+            text = "thank you"
+        intervals [31]:
+            xmin = 63.305580
+            xmax = 64.233580
+            text = "n"
+        intervals [32]:
+            xmin = 64.233580
+            xmax = 71.369580
+            text = "and then below that there's two guys and two hay bells"
+        intervals [33]:
+            xmin = 71.369580
+            xmax = 77.249580
+            text = "n"
+        intervals [34]:
+            xmin = 77.249580
+            xmax = 80.393580
+            text = "okay yes the other guy has his hands both in the air"
+        intervals [35]:
+            xmin = 80.393580
+            xmax = 84.993580
+            text = "n"
+        intervals [36]:
+            xmin = 84.993580
+            xmax = 85.177580
+            text = "thank you"
+        intervals [37]:
+            xmin = 85.177580
+            xmax = 86.993580
+            text = "n"
+        intervals [38]:
+            xmin = 86.993580
+            xmax = 87.985580
+            text = "yes no white shirt"
+        intervals [39]:
+            xmin = 87.985580
+            xmax = 91.185580
+            text = "n"
+        intervals [40]:
+            xmin = 91.185580
+            xmax = 91.433580
+            text = "yeah"
+        intervals [41]:
+            xmin = 91.433580
+            xmax = 96.353580
+            text = "n"
+        intervals [42]:
+            xmin = 96.353580
+            xmax = 97.505580
+            text = "i don't have the bus"
+        intervals [43]:
+            xmin = 97.505580
+            xmax = 98.009580
+            text = "n"
+        intervals [44]:
+            xmin = 98.009580
+            xmax = 100.081580
+            text = "i just have the lady with the choppers"
+        intervals [45]:
+            xmin = 100.081580
+            xmax = 103.657580
+            text = "n"
+        intervals [46]:
+            xmin = 103.657580
+            xmax = 103.769580
+            text = "NA"
+        intervals [47]:
+            xmin = 103.769580
+            xmax = 108.601580
+            text = "n"
+        intervals [48]:
+            xmin = 108.601580
+            xmax = 109.361580
+            text = "yep"
+        intervals [49]:
+            xmin = 109.361580
+            xmax = 110.753580
+            text = "n"
+        intervals [50]:
+            xmin = 110.753580
+            xmax = 115.777580
+            text = "and then there's a picnic table with a boy and a girl sitting on it  they both have a plate of food"
+        intervals [51]:
+            xmin = 115.777580
+            xmax = 116.657580
+            text = "n"
+        intervals [52]:
+            xmin = 116.657580
+            xmax = 119.177580
+            text = "the boy has two carrots and some peas"
+        intervals [53]:
+            xmin = 119.177580
+            xmax = 123.241580
+            text = "n"
+        intervals [54]:
+            xmin = 123.241580
+            xmax = 124.289580
+            text = "yeah it's like grumpy  yeah"
+        intervals [55]:
+            xmin = 124.289580
+            xmax = 125.665580
+            text = "n"
+        intervals [56]:
+            xmin = 125.665580
+            xmax = 127.201580
+            text = "and then my girl has to care it"
+        intervals [57]:
+            xmin = 127.201580
+            xmax = 138.377580
+            text = "n"
+        intervals [58]:
+            xmin = 138.377580
+            xmax = 138.753580
+            text = "yes"
+        intervals [59]:
+            xmin = 138.753580
+            xmax = 139.473580
+            text = "n"
+        intervals [60]:
+            xmin = 139.473580
+            xmax = 141.569580
+            text = "and then above that there's a"
+        intervals [61]:
+            xmin = 141.569580
+            xmax = 142.153580
+            text = "n"
+        intervals [62]:
+            xmin = 142.153580
+            xmax = 142.321580
+            text = "see you next time"
+        intervals [63]:
+            xmin = 142.321580
+            xmax = 143.105580
+            text = "n"
+        intervals [64]:
+            xmin = 143.105580
+            xmax = 145.793580
+            text = "black grey and like a baby behind it"
+        intervals [65]:
+            xmin = 145.793580
+            xmax = 146.353580
+            text = "n"
+        intervals [66]:
+            xmin = 146.353580
+            xmax = 146.569580
+            text = "bye"
+        intervals [67]:
+            xmin = 146.569580
+            xmax = 150.665580
+            text = "n"
+        intervals [68]:
+            xmin = 150.665580
+            xmax = 151.033580
+            text = "okay"
+        intervals [69]:
+            xmin = 151.033580
+            xmax = 151.681580
+            text = "n"
+        intervals [70]:
+            xmin = 151.681580
+            xmax = 153.225580
+            text = "i have a little baby night"
+        intervals [71]:
+            xmin = 153.225580
+            xmax = 154.105580
+            text = "n"
+        intervals [72]:
+            xmin = 154.105580
+            xmax = 154.249580
+            text = "bye"
+        intervals [73]:
+            xmin = 154.249580
+            xmax = 156.041580
+            text = "n"
+        intervals [74]:
+            xmin = 156.041580
+            xmax = 158.905580
+            text = "and then there's a john's pin store"
+        intervals [75]:
+            xmin = 158.905580
+            xmax = 161.153580
+            text = "n"
+        intervals [76]:
+            xmin = 161.153580
+            xmax = 161.345580
+            text = "NA"
+        intervals [77]:
+            xmin = 161.345580
+            xmax = 164.185580
+            text = "n"
+        intervals [78]:
+            xmin = 164.185580
+            xmax = 164.449580
+            text = "yes"
+        intervals [79]:
+            xmin = 164.449580
+            xmax = 167.993580
+            text = "n"
+        intervals [80]:
+            xmin = 167.993580
+            xmax = 170.089580
+            text = "it says buy your dad the perfect gift"
+        intervals [81]:
+            xmin = 170.089580
+            xmax = 173.385580
+            text = "n"
+        intervals [82]:
+            xmin = 173.385580
+            xmax = 175.425580
+            text = "yeah the door is open"
+        intervals [83]:
+            xmin = 175.425580
+            xmax = 176.401580
+            text = "n"
+        intervals [84]:
+            xmin = 176.401580
+            xmax = 178.977580
+            text = "and there's like a mini rack with a shirt inside"
+        intervals [85]:
+            xmin = 178.977580
+            xmax = 181.233580
+            text = "n"
+        intervals [86]:
+            xmin = 181.233580
+            xmax = 183.169580
+            text = "and above that there's a"
+        intervals [87]:
+            xmin = 183.169580
+            xmax = 183.689580
+            text = "n"
+        intervals [88]:
+            xmin = 183.689580
+            xmax = 184.577580
+            text = "billion that says shop"
+        intervals [89]:
+            xmin = 184.577580
+            xmax = 185.561580
+            text = "n"
+        intervals [90]:
+            xmin = 185.561580
+            xmax = 187.465580
+            text = "gray with a green door"
+        intervals [91]:
+            xmin = 187.465580
+            xmax = 188.737580
+            text = "n"
+        intervals [92]:
+            xmin = 188.737580
+            xmax = 191.137580
+            text = "and then a sign on the side that says honey"
+        intervals [93]:
+            xmin = 191.137580
+            xmax = 192.329580
+            text = "n"
+        intervals [94]:
+            xmin = 192.329580
+            xmax = 194.969580
+            text = "and it has b hive and 2 bs"
+        intervals [95]:
+            xmin = 194.969580
+            xmax = 206.569580
+            text = "n"
+        intervals [96]:
+            xmin = 206.569580
+            xmax = 207.665580
+            text = "don't have any"
+        intervals [97]:
+            xmin = 207.665580
+            xmax = 208.193580
+            text = "n"
+        intervals [98]:
+            xmin = 208.193580
+            xmax = 208.433580
+            text = "thank you"
+        intervals [99]:
+            xmin = 208.433580
+            xmax = 210.377580
+            text = "n"
+        intervals [100]:
+            xmin = 210.377580
+            xmax = 210.841580
+            text = "we only have one"
+        intervals [101]:
+            xmin = 210.841580
+            xmax = 212.129580
+            text = "n"
+        intervals [102]:
+            xmin = 212.129580
+            xmax = 212.649580
+            text = "um"
+        intervals [103]:
+            xmin = 212.649580
+            xmax = 213.233580
+            text = "n"
+        intervals [104]:
+            xmin = 213.233580
+            xmax = 215.673580
+            text = "because you're a sign site or you're a sales shop"
+        intervals [105]:
+            xmin = 215.673580
+            xmax = 221.969580
+            text = "n"
+        intervals [106]:
+            xmin = 221.969580
+            xmax = 222.769580
+            text = "yeah"
+        intervals [107]:
+            xmin = 222.769580
+            xmax = 232.929580
+            text = "n"
+        intervals [108]:
+            xmin = 232.929580
+            xmax = 233.225580
+            text = "yeah"
+        intervals [109]:
+            xmin = 233.225580
+            xmax = 237.089580
+            text = "n"
+        intervals [110]:
+            xmin = 237.089580
+            xmax = 238.057580
+            text = "great"
+        intervals [111]:
+            xmin = 238.057580
+            xmax = 239.049580
+            text = "n"
+        intervals [112]:
+            xmin = 239.049580
+            xmax = 241.057580
+            text = "and has blue socks on"
+        intervals [113]:
+            xmin = 241.057580
+            xmax = 243.521580
+            text = "n"
+        intervals [114]:
+            xmin = 243.521580
+            xmax = 244.185580
+            text = "um"
+        intervals [115]:
+            xmin = 244.185580
+            xmax = 245.289580
+            text = "n"
+        intervals [116]:
+            xmin = 245.289580
+            xmax = 250.345580
+            text = "as your boy in the red shorts and white shirt is he saying anything down with his hands up"
+        intervals [117]:
+            xmin = 250.345580
+            xmax = 250.977580
+            text = "n"
+        intervals [118]:
+            xmin = 250.977580
+            xmax = 251.401580
+            text = "thanks again shawn &"
+        intervals [119]:
+            xmin = 251.401580
+            xmax = 252.233580
+            text = "n"
+        intervals [120]:
+            xmin = 252.233580
+            xmax = 252.737580
+            text = "yes ma'am"
+        intervals [121]:
+            xmin = 252.737580
+            xmax = 255.969580
+            text = "n"
+        intervals [122]:
+            xmin = 255.969580
+            xmax = 256.985580
+            text = "i counted 11 i think"
+        intervals [123]:
+            xmin = 256.985580
+            xmax = 258.665580
+            text = "n"
+        intervals [124]:
+            xmin = 258.665580
+            xmax = 258.921580
+            text = "we will"
+        intervals [125]:
+            xmin = 258.921580
+            xmax = 260.305580
+            text = "n"
+        intervals [126]:
+            xmin = 260.305580
+            xmax = 260.529580
+            text = "NA"
+        intervals [127]:
+            xmin = 260.529580
+            xmax = 263.873580
+            text = "n"
+        intervals [128]:
+            xmin = 263.873580
+            xmax = 264.457580
+            text = "NA"
+        intervals [129]:
+            xmin = 264.457580
+            xmax = 267.713580
+            text = "n"
+        intervals [130]:
+            xmin = 267.713580
+            xmax = 270.777580
+            text = "is there anything in the middle above the bush that you have"
+        intervals [131]:
+            xmin = 270.777580
+            xmax = 272.385580
+            text = "n"
+        intervals [132]:
+            xmin = 272.385580
+            xmax = 272.633580
+            text = "okay"
+        intervals [133]:
+            xmin = 272.633580
+            xmax = 277.905580
+            text = "n"
+        intervals [134]:
+            xmin = 277.905580
+            xmax = 278.761580
+            text = "maybe i miscount it"
+        intervals [135]:
+            xmin = 278.761580
+            xmax = 280.739161
+            text = "n"
+    item [2]:
+        class = "IntervalTier"
+        name = "two"
+        xmin = 0.000000
+        xmax = 280.739161
+        intervals: size = 137
+        intervals [1]:
+            xmin = 0.000000
+            xmax = 1.329580
+            text = "you"
+        intervals [2]:
+            xmin = 0.000000
+            xmax = 0.000000
+            text = "n"
+        intervals [3]:
+            xmin = 1.329580
+            xmax = 4.961580
+            text = "n"
+        intervals [4]:
+            xmin = 4.961580
+            xmax = 8.065580
+            text = "and this is participant 2 on channel 2"
+        intervals [5]:
+            xmin = 8.065580
+            xmax = 9.169580
+            text = "n"
+        intervals [6]:
+            xmin = 9.169580
+            xmax = 9.841580
+            text = "NA"
+        intervals [7]:
+            xmin = 9.841580
+            xmax = 11.105580
+            text = "n"
+        intervals [8]:
+            xmin = 11.105580
+            xmax = 11.241580
+            text = "you"
+        intervals [9]:
+            xmin = 11.241580
+            xmax = 12.177580
+            text = "n"
+        intervals [10]:
+            xmin = 12.177580
+            xmax = 15.329580
+            text = "sure i have a yellow towel that says adam hanging"
+        intervals [11]:
+            xmin = 15.329580
+            xmax = 15.865580
+            text = "n"
+        intervals [12]:
+            xmin = 15.865580
+            xmax = 17.697580
+            text = "the pink towel that says sue"
+        intervals [13]:
+            xmin = 17.697580
+            xmax = 19.977580
+            text = "n"
+        intervals [14]:
+            xmin = 19.977580
+            xmax = 22.521580
+            text = "the net does have a weight stripe going through the middle"
+        intervals [15]:
+            xmin = 22.521580
+            xmax = 24.553580
+            text = "n"
+        intervals [16]:
+            xmin = 24.553580
+            xmax = 26.041580
+            text = "have another towel that's"
+        intervals [17]:
+            xmin = 26.041580
+            xmax = 28.977580
+            text = "n"
+        intervals [18]:
+            xmin = 28.977580
+            xmax = 30.993580
+            text = "oh my dog is not pulling a towel"
+        intervals [19]:
+            xmin = 30.993580
+            xmax = 33.481580
+            text = "n"
+        intervals [20]:
+            xmin = 33.481580
+            xmax = 33.649580
+            text = "NA"
+        intervals [21]:
+            xmin = 33.649580
+            xmax = 38.313580
+            text = "n"
+        intervals [22]:
+            xmin = 38.313580
+            xmax = 43.697580
+            text = "i don't think anything fell out of my weird wheelbarrow  it's full of green drops"
+        intervals [23]:
+            xmin = 43.697580
+            xmax = 44.937580
+            text = "n"
+        intervals [24]:
+            xmin = 44.937580
+            xmax = 45.409580
+            text = "thanks for watching"
+        intervals [25]:
+            xmin = 45.409580
+            xmax = 46.889580
+            text = "n"
+        intervals [26]:
+            xmin = 46.889580
+            xmax = 52.521580
+            text = "oh mine does not have that"
+        intervals [27]:
+            xmin = 52.521580
+            xmax = 57.217580
+            text = "n"
+        intervals [28]:
+            xmin = 57.217580
+            xmax = 62.249580
+            text = "yes he has a red hat and then the other person has a blue shirt blue shoes and orange shorts"
+        intervals [29]:
+            xmin = 62.249580
+            xmax = 66.337580
+            text = "n"
+        intervals [30]:
+            xmin = 66.337580
+            xmax = 68.217580
+            text = "NA"
+        intervals [31]:
+            xmin = 68.217580
+            xmax = 69.289580
+            text = "n"
+        intervals [32]:
+            xmin = 69.289580
+            xmax = 69.681580
+            text = "you"
+        intervals [33]:
+            xmin = 69.681580
+            xmax = 72.201580
+            text = "n"
+        intervals [34]:
+            xmin = 72.201580
+            xmax = 77.257580
+            text = "my guy just says i'm gonna shoot and he's holding his hands out like a pretend"
+        intervals [35]:
+            xmin = 77.257580
+            xmax = 78.497580
+            text = "n"
+        intervals [36]:
+            xmin = 78.497580
+            xmax = 78.905580
+            text = "thank you"
+        intervals [37]:
+            xmin = 78.905580
+            xmax = 82.017580
+            text = "n"
+        intervals [38]:
+            xmin = 82.017580
+            xmax = 82.249580
+            text = "you"
+        intervals [39]:
+            xmin = 82.249580
+            xmax = 84.241580
+            text = "n"
+        intervals [40]:
+            xmin = 84.241580
+            xmax = 87.017580
+            text = "yes and does he have red shorts and green shoes"
+        intervals [41]:
+            xmin = 87.017580
+            xmax = 88.977580
+            text = "n"
+        intervals [42]:
+            xmin = 88.977580
+            xmax = 91.265580
+            text = "and there are two bills of hay between them"
+        intervals [43]:
+            xmin = 91.265580
+            xmax = 92.449580
+            text = "n"
+        intervals [44]:
+            xmin = 92.449580
+            xmax = 96.241580
+            text = "and then above that i have a bush with some red flowers"
+        intervals [45]:
+            xmin = 96.241580
+            xmax = 96.929580
+            text = "n"
+        intervals [46]:
+            xmin = 96.929580
+            xmax = 97.409580
+            text = "NA"
+        intervals [47]:
+            xmin = 97.409580
+            xmax = 100.425580
+            text = "n"
+        intervals [48]:
+            xmin = 100.425580
+            xmax = 103.497580
+            text = "okay so this lady is chopping the bush with the flowers"
+        intervals [49]:
+            xmin = 103.497580
+            xmax = 104.265580
+            text = "n"
+        intervals [50]:
+            xmin = 104.265580
+            xmax = 108.633580
+            text = "and she has a green shirt and a blue skirt and brown shoes"
+        intervals [51]:
+            xmin = 108.633580
+            xmax = 111.129580
+            text = "n"
+        intervals [52]:
+            xmin = 111.129580
+            xmax = 113.329580
+            text = "there's a big table with a boy and a girl"
+        intervals [53]:
+            xmin = 113.329580
+            xmax = 114.905580
+            text = "n"
+        intervals [54]:
+            xmin = 114.905580
+            xmax = 115.305580
+            text = "NA"
+        intervals [55]:
+            xmin = 115.305580
+            xmax = 117.041580
+            text = "n"
+        intervals [56]:
+            xmin = 117.041580
+            xmax = 117.897580
+            text = "we have to"
+        intervals [57]:
+            xmin = 117.897580
+            xmax = 119.905580
+            text = "n"
+        intervals [58]:
+            xmin = 119.905580
+            xmax = 124.257580
+            text = "my boy just has two carrots no peas and he looks grumpy"
+        intervals [59]:
+            xmin = 124.257580
+            xmax = 127.617580
+            text = "n"
+        intervals [60]:
+            xmin = 127.617580
+            xmax = 132.017580
+            text = "yes mine also has two carrots and then to the right of"
+        intervals [61]:
+            xmin = 132.017580
+            xmax = 132.857580
+            text = "n"
+        intervals [62]:
+            xmin = 132.857580
+            xmax = 138.225580
+            text = "at the table there are three chickens that are all white eating some seeds off of the ground"
+        intervals [63]:
+            xmin = 138.225580
+            xmax = 139.897580
+            text = "n"
+        intervals [64]:
+            xmin = 139.897580
+            xmax = 140.625580
+            text = "and then above the"
+        intervals [65]:
+            xmin = 140.625580
+            xmax = 143.049580
+            text = "n"
+        intervals [66]:
+            xmin = 143.049580
+            xmax = 143.377580
+            text = "bye"
+        intervals [67]:
+            xmin = 143.377580
+            xmax = 147.145580
+            text = "n"
+        intervals [68]:
+            xmin = 147.145580
+            xmax = 151.273580
+            text = "there's just one sheep in mine and it looks like it's kind of brown or"
+        intervals [69]:
+            xmin = 151.273580
+            xmax = 152.137580
+            text = "n"
+        intervals [70]:
+            xmin = 152.137580
+            xmax = 152.841580
+            text = "a little"
+        intervals [71]:
+            xmin = 152.841580
+            xmax = 154.977580
+            text = "n"
+        intervals [72]:
+            xmin = 154.977580
+            xmax = 155.753580
+            text = "you"
+        intervals [73]:
+            xmin = 155.753580
+            xmax = 159.225580
+            text = "n"
+        intervals [74]:
+            xmin = 159.225580
+            xmax = 163.881580
+            text = "mine's has hats and pins and then in the window there's the red shirt and a green shirt"
+        intervals [75]:
+            xmin = 163.881580
+            xmax = 164.753580
+            text = "n"
+        intervals [76]:
+            xmin = 164.753580
+            xmax = 168.193580
+            text = "a sign that says by the perfect gift for mother's day"
+        intervals [77]:
+            xmin = 168.193580
+            xmax = 169.513580
+            text = "n"
+        intervals [78]:
+            xmin = 169.513580
+            xmax = 169.825580
+            text = "NA"
+        intervals [79]:
+            xmin = 169.825580
+            xmax = 171.081580
+            text = "n"
+        intervals [80]:
+            xmin = 171.081580
+            xmax = 173.521580
+            text = "is your shop like a tan color"
+        intervals [81]:
+            xmin = 173.521580
+            xmax = 177.729580
+            text = "n"
+        intervals [82]:
+            xmin = 177.729580
+            xmax = 178.289580
+            text = "NA"
+        intervals [83]:
+            xmin = 178.289580
+            xmax = 179.185580
+            text = "n"
+        intervals [84]:
+            xmin = 179.185580
+            xmax = 180.849580
+            text = "yes mine is the same"
+        intervals [85]:
+            xmin = 180.849580
+            xmax = 182.273580
+            text = "n"
+        intervals [86]:
+            xmin = 182.273580
+            xmax = 183.009580
+            text = "that's it"
+        intervals [87]:
+            xmin = 183.009580
+            xmax = 184.385580
+            text = "n"
+        intervals [88]:
+            xmin = 184.385580
+            xmax = 184.841580
+            text = "NA"
+        intervals [89]:
+            xmin = 184.841580
+            xmax = 186.201580
+            text = "n"
+        intervals [90]:
+            xmin = 186.201580
+            xmax = 186.729580
+            text = "with the green"
+        intervals [91]:
+            xmin = 186.729580
+            xmax = 187.681580
+            text = "n"
+        intervals [92]:
+            xmin = 187.681580
+            xmax = 188.257580
+            text = "hmm"
+        intervals [93]:
+            xmin = 188.257580
+            xmax = 189.489580
+            text = "n"
+        intervals [94]:
+            xmin = 189.489580
+            xmax = 190.513580
+            text = "the side that says"
+        intervals [95]:
+            xmin = 190.513580
+            xmax = 192.761580
+            text = "n"
+        intervals [96]:
+            xmin = 192.761580
+            xmax = 193.113580
+            text = "you"
+        intervals [97]:
+            xmin = 193.113580
+            xmax = 195.489580
+            text = "n"
+        intervals [98]:
+            xmin = 195.489580
+            xmax = 199.161580
+            text = "my sign also says honey but there's no beehive there's just two bees"
+        intervals [99]:
+            xmin = 199.161580
+            xmax = 200.097580
+            text = "n"
+        intervals [100]:
+            xmin = 200.097580
+            xmax = 206.369580
+            text = "and then below that sign there are sacks of potatoes on the ground with one that fell out"
+        intervals [101]:
+            xmin = 206.369580
+            xmax = 208.113580
+            text = "n"
+        intervals [102]:
+            xmin = 208.113580
+            xmax = 208.281580
+            text = "you"
+        intervals [103]:
+            xmin = 208.281580
+            xmax = 212.089580
+            text = "n"
+        intervals [104]:
+            xmin = 212.089580
+            xmax = 213.153580
+            text = "you"
+        intervals [105]:
+            xmin = 213.153580
+            xmax = 214.121580
+            text = "n"
+        intervals [106]:
+            xmin = 214.121580
+            xmax = 214.625580
+            text = "NA"
+        intervals [107]:
+            xmin = 214.625580
+            xmax = 216.049580
+            text = "n"
+        intervals [108]:
+            xmin = 216.049580
+            xmax = 221.865580
+            text = "yes"
+        intervals [109]:
+            xmin = 221.865580
+            xmax = 223.745580
+            text = "n"
+        intervals [110]:
+            xmin = 223.745580
+            xmax = 226.121580
+            text = "okay"
+        intervals [111]:
+            xmin = 226.121580
+            xmax = 227.761580
+            text = "n"
+        intervals [112]:
+            xmin = 227.761580
+            xmax = 232.993580
+            text = "let's see  the kids at the picnic table is the girl wearing a yellow shirt and a pink skirt"
+        intervals [113]:
+            xmin = 232.993580
+            xmax = 233.913580
+            text = "n"
+        intervals [114]:
+            xmin = 233.913580
+            xmax = 236.929580
+            text = "the guy has like a light blue top on"
+        intervals [115]:
+            xmin = 236.929580
+            xmax = 239.481580
+            text = "n"
+        intervals [116]:
+            xmin = 239.481580
+            xmax = 239.753580
+            text = "you"
+        intervals [117]:
+            xmin = 239.753580
+            xmax = 241.297580
+            text = "n"
+        intervals [118]:
+            xmin = 241.297580
+            xmax = 241.945580
+            text = "yeah"
+        intervals [119]:
+            xmin = 241.945580
+            xmax = 243.977580
+            text = "n"
+        intervals [120]:
+            xmin = 243.977580
+            xmax = 244.169580
+            text = "you"
+        intervals [121]:
+            xmin = 244.169580
+            xmax = 245.465580
+            text = "n"
+        intervals [122]:
+            xmin = 245.465580
+            xmax = 245.609580
+            text = "you"
+        intervals [123]:
+            xmin = 245.609580
+            xmax = 247.873580
+            text = "n"
+        intervals [124]:
+            xmin = 247.873580
+            xmax = 248.081580
+            text = "thank you"
+        intervals [125]:
+            xmin = 248.081580
+            xmax = 250.753580
+            text = "n"
+        intervals [126]:
+            xmin = 250.753580
+            xmax = 252.609580
+            text = "no he's not saying anything"
+        intervals [127]:
+            xmin = 252.609580
+            xmax = 264.713580
+            text = "n"
+        intervals [128]:
+            xmin = 264.713580
+            xmax = 266.041580
+            text = "you"
+        intervals [129]:
+            xmin = 266.041580
+            xmax = 268.377580
+            text = "n"
+        intervals [130]:
+            xmin = 268.377580
+            xmax = 269.745580
+            text = "NA"
+        intervals [131]:
+            xmin = 269.745580
+            xmax = 271.321580
+            text = "n"
+        intervals [132]:
+            xmin = 271.321580
+            xmax = 273.161580
+            text = "no"
+        intervals [133]:
+            xmin = 273.161580
+            xmax = 276.961580
+            text = "n"
+        intervals [134]:
+            xmin = 276.961580
+            xmax = 277.969580
+            text = "i don't know maybe that's"
+        intervals [135]:
+            xmin = 277.969580
+            xmax = 278.953580
+            text = "n"
+        intervals [136]:
+            xmin = 278.953580
+            xmax = 280.739161
+            text = "maybe 11 is all there is"
+        intervals [137]:
+            xmin = 280.739161
+            xmax = 280.739161
+            text = "n"
+
