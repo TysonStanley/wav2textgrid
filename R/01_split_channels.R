@@ -23,14 +23,14 @@ split_channels <- function(wav_file, threshold = 200, plot = FALSE){
   right <- tuneR::channel(wav, which = "right")
 
   # running mean
-  left_roll <- data.table::frollmean(abs(left@left), n = 10000)
-  right_roll <- data.table::frollmean(abs(right@left), n = 10000)
-  left_roll[1:10000] <- abs(mean(left@left[1:10000]))
-  right_roll[1:10000] <- abs(mean(right@left[1:10000]))
+  # left_roll <- data.table::frollmean(abs(left@left), n = 10000)
+  # right_roll <- data.table::frollmean(abs(right@left), n = 10000)
+  # left_roll[1:10000] <- abs(mean(left@left[1:10000]))
+  # right_roll[1:10000] <- abs(mean(right@left[1:10000]))
 
   # remove noises
-  left@left <- ifelse(left_roll < threshold, 0, left@left)
-  right@left <- ifelse(right_roll < threshold, 0, right@left)
+  # left@left <- ifelse(left_roll < threshold, 0, left@left)
+  # right@left <- ifelse(right_roll < threshold, 0, right@left)
   # left <- volume(left, gain = ifelse(left@left < threshold, 0, 1))
   # left <- volume(left, gain = ifelse(left@left < threshold, 0, 1))
 
