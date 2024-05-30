@@ -60,7 +60,7 @@ split_channels <- function(wav_file, noise_reduction = FALSE, threshold = 200, p
 
 
 # create and run script for noise_reduction
-noise_reduce <- function(folder, channel){
+noise_reduce <- function(folder, channel_file){
   script <- glue::glue({"
 # Made by Lotte Eijk - 17-11-22
 # Reduce noise using the standard Praat settings and save denoised file to specified folder
@@ -68,7 +68,7 @@ noise_reduce <- function(folder, channel){
 form Reduce noise
     sentence directory {folder}/
     sentence Word
-    positive Channel: 2
+    positive Channel: 1
 endform"})
   script <- glue::glue(script, '\n\n', "Create Strings as file list... file-list 'directory$''word$'*.wav")
   script <- glue::glue(script, '\n\n', "numberOfFiles = Get number of strings")
