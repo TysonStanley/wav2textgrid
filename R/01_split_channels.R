@@ -41,8 +41,8 @@ split_channels <- function(wav_file, noise_reduction = FALSE, threshold = 200, p
   fs::file_move(ch2, file.path(fs::path_dir(ch2), "tmp"))
 
   # new locations
-  ch1 = file.path(fs::path_dir(step1[1]), "tmp", file1)
-  ch2 = file.path(fs::path_dir(step1[2]), "tmp", file2)
+  ch1 = file.path(fs::path_dir(ch1), "tmp", file1)
+  ch2 = file.path(fs::path_dir(ch2), "tmp", file2)
 
   # noise reduction
   if (noise_reduction){
