@@ -4,6 +4,7 @@
 #' wav file.
 #'
 #' @param wav_file The path to the wav file
+#' @param noise_reduction whether the praat noise reduction script should be run before getting boundaries, default = FALSE
 #' @param min_pitch Minimum pitch (Hz)
 #' @param time_step Time step (s)
 #' @param threshold silence threshold, default is -45
@@ -19,7 +20,7 @@
 #' @importFrom fs dir_delete
 #'
 #' @export
-auto_textgrid <- function(wav_file, min_pitch = 100, time_step = 0.0, threshold = -45, min_silent_int = 0.5, min_sound_int = 0.1, model_type = "base"){
+auto_textgrid <- function(wav_file, noise_reduction = FALSE, min_pitch = 100, time_step = 0.0, threshold = -45, min_silent_int = 0.5, min_sound_int = 0.1, model_type = "base"){
   # Step 1
   message("Step 1 of 5...")
   step1 = split_channels(wav_file, threshold = 200, plot = TRUE)

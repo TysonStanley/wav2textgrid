@@ -4,14 +4,21 @@
 \alias{split_channels}
 \title{Split Channels}
 \usage{
-split_channels(wav_file, threshold = 200, plot = FALSE)
+split_channels(
+  wav_file,
+  noise_reduction = FALSE,
+  threshold = 200,
+  plot = FALSE
+)
 }
 \arguments{
 \item{wav_file}{The path to the wav file}
 
+\item{noise_reduction}{whether the praat noise reduction script should be run before getting boundaries, default = FALSE}
+
 \item{threshold}{noise level for removal}
 
-\item{plot}{should the tuneR::plot() be made for each channel? Default is FALSE.}
+\item{plot}{should the tuneR::plot() be made for each channel? Default is FALSE. Only applicable when noise_reduction = FALSE.}
 }
 \description{
 Splits the wav file into the two channels

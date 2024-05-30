@@ -1,5 +1,5 @@
 
 
 test_that("full package call", {
-  # need permission to connect a file to package
+  # probably check individual functions, auto_textgrid is too long
 })

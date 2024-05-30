@@ -6,6 +6,7 @@
 \usage{
 auto_textgrid(
   wav_file,
+  noise_reduction = FALSE,
   min_pitch = 100,
   time_step = 0,
   threshold = -45,
@@ -16,6 +17,8 @@ auto_textgrid(
 }
 \arguments{
 \item{wav_file}{The path to the wav file}
+
+\item{noise_reduction}{whether the praat noise reduction script should be run before getting boundaries, default = FALSE}
 
 \item{min_pitch}{Minimum pitch (Hz)}
 
