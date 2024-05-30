@@ -14,7 +14,8 @@ status](https://www.r-pkg.org/badges/version/wav2textgrid)](https://CRAN.R-proje
 
 The goal of wav2textgrid is to take a two channel `wav` file of a
 conversation and turn it into a transcribed textgrid ready for further
-analysis in R or Praat.
+analysis in R or Praat. To use the package, you’ll need `R`, `Praat`,
+and `python` installed.
 
 ## Installation
 
