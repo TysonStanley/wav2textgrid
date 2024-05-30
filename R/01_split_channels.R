@@ -5,7 +5,7 @@
 #' @param wav_file The path to the wav file
 #' @param noise_reduction whether the praat noise reduction script should be run before getting boundaries, default = FALSE
 #' @param threshold noise level for removal
-#' @param plot should the tuneR::plot() be made for each channel? Default is FALSE. Only applicable when noise_reduction = FALSE.
+#' @param plot should the tuneR::plot() be made for each channel? Default is FALSE.
 #'
 #' @import tuneR
 #' @import data.table
@@ -33,12 +33,10 @@ split_channels <- function(wav_file, noise_reduction = FALSE, threshold = 200, p
 
   if (plot) tuneR::plot(left); tuneR::plot(right)
 
-
   # noise reduction
   if (noise_reduction){
     noise_reduce(fs::path_dir(ch1), ch1)
     noise_reduce(fs::path_dir(ch2), ch2)
-
   }
 
   # check that files exist
@@ -57,9 +55,8 @@ noise_reduce <- function(folder, channel){
 # Reduce noise using the standard Praat settings and save denoised file to specified folder
 
 form Reduce noise
-    sentence inputDir {folder}
-    positive Channel: 2
-    sentence outputDir {folder}
+    sentence inputDir {folder}/
+    sentence outputDir {folder}/
     sentence inputFile {channel}
 endform"})
   script <- glue::glue(script, '\n\n', "Create Strings as file list... file-list 'inputFile$'")
@@ -75,7 +72,7 @@ endform"})
   script <- glue::glue(script, '\n', "endfor")
   script <- glue::glue(script, '\n\n', "select all")
   script <- glue::glue(script, '\n', "Remove")
-  script_file <- paste0(folder, "temp_noise.praat")
+  script_file <- file.path(folder, "temp_noise.praat")
   writeLines(script, con = script_file)
 
   speakr::praat_run(script_file, folder, '""', 1)

@@ -18,7 +18,7 @@ split_channels(
 
 \item{threshold}{noise level for removal}
 
-\item{plot}{should the tuneR::plot() be made for each channel? Default is FALSE. Only applicable when noise_reduction = FALSE.}
+\item{plot}{should the tuneR::plot() be made for each channel? Default is FALSE.}
 }
 \description{
 Splits the wav file into the two channels
