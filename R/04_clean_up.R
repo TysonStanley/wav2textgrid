@@ -17,7 +17,6 @@
 #'
 #' @export
 clean_up <- function(whispered1, whispered2, folder){
-  browser()
   # grab segments
   chan1 = purrr::map(whispered1, ~.x[["segments"]])
   chan2 = purrr::map(whispered2, ~.x[["segments"]])
