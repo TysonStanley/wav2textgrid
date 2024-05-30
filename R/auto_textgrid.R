@@ -24,17 +24,6 @@ auto_textgrid <- function(wav_file, noise_reduction = FALSE, min_pitch = 100, ti
   # Step 1
   message("Step 1 of 5...")
   step1 = split_channels(wav_file, threshold = 200, plot = TRUE)
-
-  # move files to tmp folder
-  fs::dir_create(file.path(fs::path_dir(wav_file), "tmp"))
-  file1 = fs::path_file(step1[1])
-  file2 = fs::path_file(step1[2])
-  fs::file_move(step1[1], file.path(fs::path_dir(step1[1]), "tmp"))
-  fs::file_move(step1[2], file.path(fs::path_dir(step1[2]), "tmp"))
-
-  # new locations
-  step1[1] = file.path(fs::path_dir(step1[1]), "tmp", file1)
-  step1[2] = file.path(fs::path_dir(step1[2]), "tmp", file2)
   folder = fs::path_dir(step1[2])
 
   # Step 2

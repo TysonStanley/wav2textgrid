@@ -33,6 +33,17 @@ split_channels <- function(wav_file, noise_reduction = FALSE, threshold = 200, p
 
   if (plot) tuneR::plot(left); tuneR::plot(right)
 
+  # move files to tmp folder
+  fs::dir_create(file.path(fs::path_dir(wav_file), "tmp"))
+  file1 = fs::path_file(ch1)
+  file2 = fs::path_file(ch2)
+  fs::file_move(ch1, file.path(fs::path_dir(ch1), "tmp"))
+  fs::file_move(ch2, file.path(fs::path_dir(ch2), "tmp"))
+
+  # new locations
+  ch1 = file.path(fs::path_dir(step1[1]), "tmp", file1)
+  ch2 = file.path(fs::path_dir(step1[2]), "tmp", file2)
+
   # noise reduction
   if (noise_reduction){
     noise_reduce(fs::path_dir(ch1), ch1)
@@ -55,11 +66,11 @@ noise_reduce <- function(folder, channel){
 # Reduce noise using the standard Praat settings and save denoised file to specified folder
 
 form Reduce noise
-    sentence inputDir {folder}/
-    sentence outputDir {folder}/
-    sentence inputFile {channel}
+    sentence directory {folder}/
+    sentence Word
+    positive Channel: 2
 endform"})
-  script <- glue::glue(script, '\n\n', "Create Strings as file list... file-list 'inputFile$'")
+  script <- glue::glue(script, '\n\n', "Create Strings as file list... file-list 'directory$''word$'*.wav")
   script <- glue::glue(script, '\n\n', "numberOfFiles = Get number of strings")
   script <- glue::glue(script, '\n\n', "for ifile to numberOfFiles")
   script <- glue::glue(script, '\n', "    select Strings list")
@@ -68,7 +79,7 @@ endform"})
   script <- glue::glue(script, '\n', '    Reduce noise: 0, 0, 0.025, 80, 10000, 40, -20, "spectral-subtraction"')
   script <- glue::glue(script, '\n', "    lengthFN = length (fileName$)")
   script <- glue::glue(script, '\n', "    newfilename$ = fileName$")
-  script <- glue::glue(script, '\n', "    Write to WAV file... 'outputDir$'/'newfilename$'")
+  script <- glue::glue(script, '\n', "    Write to WAV file... 'directory$''word$'*.wav")
   script <- glue::glue(script, '\n', "endfor")
   script <- glue::glue(script, '\n\n', "select all")
   script <- glue::glue(script, '\n', "Remove")
