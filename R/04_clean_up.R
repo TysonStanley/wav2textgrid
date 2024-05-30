@@ -17,38 +17,37 @@
 #'
 #' @export
 clean_up <- function(whispered1, whispered2, folder){
+  browser()
   # grab segments
   chan1 = purrr::map(whispered1, ~.x[["segments"]])
   chan2 = purrr::map(whispered2, ~.x[["segments"]])
-  chan1 = purrr::map(chan1, ~purrr::pluck(.x, 1))
-  chan2 = purrr::map(chan2, ~purrr::pluck(.x, 1))
+  lengths1 = purrr::map_dbl(chan1, ~length(.x))
+  lengths2 = purrr::map_dbl(chan2, ~length(.x))
 
-  # create tibble channel 1
-  channel1 = purrr::map(seq_along(chan1), ~{
-    tibble::tibble(
-      id = .x,
-      #start = chan1[[.x]]$start,
-      #end = chan1[[.x]]$end,
-      text = chan1[[.x]]$text
-    )
+  # extract text
+  chan1_text = purrr::map2(lengths1, seq_along(chan1), ~{
+    if (.x == 0){
+      "NA"
+    } else if (.x > 0){
+      paste(chan1[[.y]][[1]]$text, collapse = " ")
+    }
   })
-  channel1 = data.table::rbindlist(channel1, fill = TRUE)
-  channel1$text = tolower(channel1$text)
-
-  # create tibble channel 2
-  channel2 = purrr::map(seq_along(chan2), ~{
-    tibble::tibble(
-      id = .x,
-      #start = chan2[[.x]]$start,
-      #end = chan2[[.x]]$end,
-      text = chan2[[.x]]$text
-    )
+  chan2_text = purrr::map2(lengths2, seq_along(chan2), ~{
+    if (.x == 0){
+      "NA"
+    } else if (.x > 0){
+      paste(chan2[[.y]][[1]]$text, collapse = " ")
+    }
   })
-  channel2 = data.table::rbindlist(channel2, fill = TRUE)
-  channel2$text = tolower(channel2$text)
 
-  data.table::setDT(channel1)
-  data.table::setDT(channel2)
+  chan1_text = tolower(chan1_text)
+  chan1_text = stringr::str_squish(stringr::str_remove_all(chan1_text, "\\.|\\,"))
+  chan1_text = stringr::str_replace_all(chan1_text, "^thank you$", "[bc]")
+  chan1_text = data.table::data.table(text = chan1_text)
+  chan2_text = tolower(chan2_text)
+  chan2_text = stringr::str_squish(stringr::str_remove_all(chan2_text, "\\.|\\,"))
+  chan2_text = stringr::str_replace_all(chan2_text, "^thank you$", "[bc]")
+  chan2_text = data.table::data.table(text = chan2_text)
 
   # grab silences file
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
@@ -61,20 +60,18 @@ clean_up <- function(whispered1, whispered2, folder){
   chan2_silences = chan2_silences[text == "sounding"]
   chan1_silences[, text := NULL]
   chan2_silences[, text := NULL]
-  chan1_silences[, id := .I]
-  chan2_silences[, id := .I]
 
   # join with text
-  chan1_joined = merge(channel1, chan1_silences, by = "id")
-  chan2_joined = merge(channel2, chan2_silences, by = "id")
+  chan1_joined = cbind(chan1_silences, chan1_text)
+  chan2_joined = cbind(chan2_silences, chan2_text)
 
   # channels
   chan1_joined[, channel := 1]
   chan2_joined[, channel := 2]
 
   # add "n" for non-speech
-  non1 = chan1_joined[, .(start = end, end = shift(start, type = "lead"))]
-  non2 = chan2_joined[, .(start = end, end = shift(start, type = "lead"))]
+  non1 = chan1_joined[, .(start = end, end = data.table::shift(start, type = "lead"))]
+  non2 = chan2_joined[, .(start = end, end = data.table::shift(start, type = "lead"))]
   non1[, text := "n"]
   non2[, text := "n"]
   non1[, channel := 1]
