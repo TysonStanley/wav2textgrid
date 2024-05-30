@@ -13,6 +13,9 @@
 #' @import data.table
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom stringr str_trim
+#' @importFrom stringr str_remove_all
+#' @importFrom stringr str_replace_all
+#' @importFrom stringr str_squish
 #' @importFrom furniture washer
 #'
 #' @export
@@ -24,20 +27,8 @@ clean_up <- function(whispered1, whispered2, folder){
   lengths2 = purrr::map_dbl(chan2, ~length(.x))
 
   # extract text
-  chan1_text = purrr::map2(lengths1, seq_along(chan1), ~{
-    if (.x == 0){
-      "NA"
-    } else if (.x > 0){
-      paste(chan1[[.y]][[1]]$text, collapse = " ")
-    }
-  })
-  chan2_text = purrr::map2(lengths2, seq_along(chan2), ~{
-    if (.x == 0){
-      "NA"
-    } else if (.x > 0){
-      paste(chan2[[.y]][[1]]$text, collapse = " ")
-    }
-  })
+  chan1_text = text_single(lengths1, chan1)
+  chan2_text = text_single(lengths2, chan2)
 
   chan1_text = tolower(chan1_text)
   chan1_text = stringr::str_squish(stringr::str_remove_all(chan1_text, "\\.|\\,"))
@@ -92,4 +83,20 @@ clean_up <- function(whispered1, whispered2, folder){
   final[, text := stringr::str_trim(text)]
   final[, end := furniture::washer(end, is.na, value = max(end, na.rm=TRUE))]
   return(final)
+}
+
+
+# clean up text for segments
+text_single = function(lens, text){
+  output = vector(mode = "character", length = length(lens))
+  for (i in seq_along(text)){
+    if (lens[i] == 0){
+      output[i] = "NA"
+    } else if (lens[i] > 0){
+      for (y in 1:lens[i]){
+        output[i] = paste(output[i], text[[i]][y][[1]]$text, collapse = " ")
+      }
+    }
+  }
+  return(output)
 }
