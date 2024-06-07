@@ -35,7 +35,7 @@ auto_textgrid <- function(wav_file, noise_reduction = FALSE, min_pitch = 100, ti
 
   # Step 3
   message("Step 3 of 5...")
-  whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type)
+  whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type, prompt = prompt)
 
   # Step 4
   message("\nStep 4 of 5...")
