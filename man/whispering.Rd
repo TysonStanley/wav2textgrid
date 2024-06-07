@@ -4,7 +4,14 @@
 \alias{whispering}
 \title{Whisper Transcription}
 \usage{
-whispering(ch1, ch2, folder, model_type = "base")
+whispering(
+  ch1,
+  ch2,
+  folder,
+  model_type = "base",
+  prompt =
+    "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"
+)
 }
 \arguments{
 \item{ch1}{channel 1 file}
@@ -14,6 +21,9 @@ whispering(ch1, ch2, folder, model_type = "base")
 \item{folder}{folder of the files}
 
 \item{model_type}{the type of Whisper model to run, default is "base"}
+
+\item{prompt}{Can prompt the model with words, names, spellings you want it to use,
+default is "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"}
 }
 \description{
 Applies the OpenAI Whisper model to transcribe the conversation

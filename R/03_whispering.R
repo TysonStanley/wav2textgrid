@@ -18,7 +18,7 @@
 #' @import reticulate
 #'
 #' @export
-whispering <- function(ch1, ch2, folder, model_type = "base", prompt = ){
+whispering <- function(ch1, ch2, folder, model_type = "base", prompt = "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"){
   # grab silence/sounding timings
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
   chan2_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch2.wav_silences"))
