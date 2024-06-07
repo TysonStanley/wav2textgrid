@@ -6,6 +6,8 @@
 #' @param ch2 channel 2 file
 #' @param folder folder of the files
 #' @param model_type the type of Whisper model to run, default is "base"
+#' @param prompt Can prompt the model with words, names, spellings you want it to use,
+#' default is "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"
 #'
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom glue glue
@@ -16,7 +18,7 @@
 #' @import reticulate
 #'
 #' @export
-whispering <- function(ch1, ch2, folder, model_type = "base"){
+whispering <- function(ch1, ch2, folder, model_type = "base", prompt = ){
   # grab silence/sounding timings
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
   chan2_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch2.wav_silences"))
@@ -57,7 +59,7 @@ whispering <- function(ch1, ch2, folder, model_type = "base"){
   message("Started channel 1 transcription...")
   result1 = vector("list", length = length(ch1_files))
   for (i in seq_along(ch1_files)){
-    result1[[i]] = model$transcribe(ch1_files[[i]], fp16 = FALSE)
+    result1[[i]] = model$transcribe(ch1_files[[i]], fp16 = FALSE, initial_prompt = prompt)
     cat("\r", i, "of", length(ch1_files), "segments complete for channel 1")
   }
 
@@ -65,7 +67,7 @@ whispering <- function(ch1, ch2, folder, model_type = "base"){
   message("\nStarted channel 2 transcription...")
   result2 = vector("list", length = length(ch2_files))
   for (i in seq_along(ch2_files)){
-    result2[[i]] = model$transcribe(ch2_files[[i]], fp16 = FALSE)
+    result2[[i]] = model$transcribe(ch2_files[[i]], fp16 = FALSE, initial_prompt = prompt)
     cat("\r", i, "of", length(ch2_files), "segments complete for channel 2")
   }
 
