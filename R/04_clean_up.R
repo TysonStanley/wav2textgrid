@@ -32,11 +32,8 @@ clean_up <- function(whispered1, whispered2, folder){
 
   chan1_text = tolower(chan1_text)
   chan1_text = stringr::str_squish(stringr::str_remove_all(chan1_text, "\\.|\\,"))
-  chan1_text = stringr::str_replace_all(chan1_text, "^thank you$", "[bc]")
   chan1_text = data.table::data.table(text = chan1_text)
   chan2_text = tolower(chan2_text)
-  chan2_text = stringr::str_squish(stringr::str_remove_all(chan2_text, "\\.|\\,"))
-  chan2_text = stringr::str_replace_all(chan2_text, "^thank you$", "[bc]")
   chan2_text = data.table::data.table(text = chan2_text)
 
   # grab silences file
