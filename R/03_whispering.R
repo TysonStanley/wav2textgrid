@@ -6,7 +6,7 @@
 #' @param ch2 channel 2 file
 #' @param folder folder of the files
 #' @param model_type the type of Whisper model to run, default is "base"
-#' @param prompt Can prompt the model with words, names, spellings you want it to use,
+#' @param prompt Can prompt the model with words, names, spellings you want it to use.
 #'
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom glue glue

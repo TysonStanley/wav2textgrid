@@ -15,7 +15,7 @@ whispering(ch1, ch2, folder, model_type = "base", prompt)
 
 \item{model_type}{the type of Whisper model to run, default is "base"}
 
-\item{prompt}{Can prompt the model with words, names, spellings you want it to use,}
+\item{prompt}{Can prompt the model with words, names, spellings you want it to use.}
 }
 \description{
 Applies the OpenAI Whisper model to transcribe the conversation
