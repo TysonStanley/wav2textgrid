@@ -21,7 +21,8 @@ Imports:
     stringr,
     tibble, 
     fs,
-    glue
+    glue,
+    cli
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

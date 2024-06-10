@@ -15,6 +15,8 @@
 #' @importFrom seewave cutw
 #' @importFrom fs path
 #' @import reticulate
+#' @importFrom cli cli_progress_bar
+#' @importFrom cli cli_progress_update
 #'
 #' @export
 whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
@@ -55,19 +57,19 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
   model = whisper$load_model(model_type)
 
   # channel 1
-  message("Started channel 1 transcription...")
   result1 = vector("list", length = length(ch1_files))
+  cli::cli_progress_bar("Transcribing Channel 1 | ", total = length(ch1_files))
   for (i in seq_along(ch1_files)){
     result1[[i]] = model$transcribe(ch1_files[[i]], fp16 = FALSE, initial_prompt = prompt)
-    cat("\r", i, "of", length(ch1_files), "segments complete for channel 1")
+    cli::cli_progress_update(set = i)
   }
 
   # channel 2
-  message("\nStarted channel 2 transcription...")
   result2 = vector("list", length = length(ch2_files))
+  cli::cli_progress_bar("Transcribing Channel 2 | ", total = length(ch2_files))
   for (i in seq_along(ch2_files)){
     result2[[i]] = model$transcribe(ch2_files[[i]], fp16 = FALSE, initial_prompt = prompt)
-    cat("\r", i, "of", length(ch2_files), "segments complete for channel 2")
+    cli::cli_progress_update(set = i)
   }
 
   return(list(result1, result2))

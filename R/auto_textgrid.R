@@ -22,6 +22,8 @@
 #' @importFrom fs file_move
 #' @importFrom fs dir_create
 #' @importFrom fs dir_delete
+#' @importFrom cli cli_progress_step
+#' @importFrom cli cli_alert
 #'
 #' @export
 auto_textgrid <- function(
@@ -38,31 +40,35 @@ auto_textgrid <- function(
   # default prompt
   if (is.null(prompt)){
     prompt = "I was like, was like, I'm like, um, ah, huh, and so, so um, uh, and um, mm-hmm, like um, so like, like it's, it's like, i mean, yeah, uh-huh, hmm, right, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh"
-    message("Default prompt:", prompt)
+    cli::cli_alert(paste0("Default prompt:\n'", prompt, "'"))
   }
 
   # Step 1
-  message("Step 1 of 5...")
+  cli::cli_progress_step("Step 1 of 5")
   step1 = split_channels(wav_file, threshold = 200, plot = TRUE)
   folder = fs::path_dir(step1[2])
 
   # Step 2
-  message("Step 2 of 5...")
+  cli::cli_progress_step("Step 2 of 5")
   folder2 <- if (stringr::str_detect(osVersion, "Window|window")) paste0(folder, "\\") else paste0(folder, "/")
   step2 = get_boundaries(folder2, min_pitch, time_step, threshold, min_silent_int, min_sound_int)
 
   # Step 3
-  message("Step 3 of 5...")
+  cli::cli_progress_step("Step 3 of 5")
   whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type, prompt = prompt)
 
   # Step 4
-  message("\nStep 4 of 5...")
+  cli::cli_progress_step("\nStep 4 of 5")
   cleaned = clean_up(whispered[[1]], whispered[[2]], folder = folder)
 
   # Step 5
-  message("Step 5 of 5...")
+  cli::cli_progress_step("Step 5 of 5")
   make_textgrid(cleaned, wav_file)
+  cli::cli_progress_done()
+  cli::cli_alert_info(paste0("Written to ", paste0(str_remove(wav_file, "\\.wav"), "_output.TextGrid\n")))
 
   ## Delete intermediate files
   fs::dir_delete(folder)
 }
+
+
