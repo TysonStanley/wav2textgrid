@@ -10,9 +10,11 @@
 #' @param threshold silence threshold, default is -45
 #' @param min_silent_int Minimum silent interval (s)
 #' @param min_sound_int Minimum sounding interval (s)
-#' @param model_type the Whisper model type to use, default is "base". Other options are in order of complexity: tiny, base, small, medium, and large (see https://github.com/openai/whisper/blob/main/model-card.md).
-#' @param prompt Can prompt the model with words, names, spellings you want it to use,
-#' default is "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"
+#' @param model_type the Whisper model type to use, default is "base".
+#' Other options are in order of complexity: tiny, base, small, medium, and large
+#' (see https://github.com/openai/whisper/blob/main/model-card.md).
+#' @param prompt Can prompt the model with words, names, spellings you want it to use.
+#' Default prompts the use of backchannels, repetitions, and other conversational patterns.
 #'
 #' @importFrom fs path_split
 #' @importFrom fs dir_ls
@@ -22,7 +24,23 @@
 #' @importFrom fs dir_delete
 #'
 #' @export
-auto_textgrid <- function(wav_file, noise_reduction = FALSE, min_pitch = 100, time_step = 0.0, threshold = -45, min_silent_int = 0.5, min_sound_int = 0.1, model_type = "base", prompt = "I was like, was like, I'm like, um, ah, huh, and so, so um, uh, and um, mm-hmm, like um, so like, like it's, it's like, i mean, yeah, uh-huh, hmm, right, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh"){
+auto_textgrid <- function(
+    wav_file,
+    noise_reduction = FALSE,
+    min_pitch = 100,
+    time_step = 0.0,
+    threshold = -45,
+    min_silent_int = 0.5,
+    min_sound_int = 0.1,
+    model_type = "base",
+    prompt = NULL
+  ){
+  # default prompt
+  if (is.null(prompt)){
+    prompt = "I was like, was like, I'm like, um, ah, huh, and so, so um, uh, and um, mm-hmm, like um, so like, like it's, it's like, i mean, yeah, uh-huh, hmm, right, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh"
+    message("Default prompt:", prompt)
+  }
+
   # Step 1
   message("Step 1 of 5...")
   step1 = split_channels(wav_file, threshold = 200, plot = TRUE)

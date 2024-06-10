@@ -13,8 +13,7 @@ auto_textgrid(
   min_silent_int = 0.5,
   min_sound_int = 0.1,
   model_type = "base",
-  prompt =
-    "I was like, was like, I'm like, um, ah, huh, and so, so um, uh, and um, mm-hmm, like um, so like, like it's, it's like, i mean, yeah, uh-huh, hmm, right, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh"
+  prompt = NULL
 )
 }
 \arguments{
@@ -32,10 +31,12 @@ auto_textgrid(
 
 \item{min_sound_int}{Minimum sounding interval (s)}
 
-\item{model_type}{the Whisper model type to use, default is "base". Other options are in order of complexity: tiny, base, small, medium, and large (see https://github.com/openai/whisper/blob/main/model-card.md).}
+\item{model_type}{the Whisper model type to use, default is "base".
+Other options are in order of complexity: tiny, base, small, medium, and large
+(see https://github.com/openai/whisper/blob/main/model-card.md).}
 
-\item{prompt}{Can prompt the model with words, names, spellings you want it to use,
-default is "I was like, was like, I'm like, you know what I mean, kind of,  um, ah, huh, and so, so um, uh, and um, like um, so like, like it's, it's like, i mean, yeah, ok so, uh so, so uh, yeah so, you know, it's uh, uh and, and uh, like, kind"}
+\item{prompt}{Can prompt the model with words, names, spellings you want it to use.
+Default prompts the use of backchannels, repetitions, and other conversational patterns.}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a

@@ -4,3 +4,4 @@
 .dev
 ^README\.Rmd$
 ^\.github$
+^inst$
