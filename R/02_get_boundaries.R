@@ -11,6 +11,7 @@
 #'
 #' @importFrom speakr praat_run
 #' @importFrom glue glue
+#' @importFrom readtextgrid read_textgrid
 #'
 #' @export
 get_boundaries <- function(folder, min_pitch, time_step, threshold, min_silent_int, min_sound_int){
@@ -46,5 +47,38 @@ endform"})
   writeLines(script, con = script_file)
 
   speakr::praat_run(script_file, folder, '""', 1)
+
+  # check output
+  check_shared_boundaries(script_file)
+
+  # if successful return 1
   return(1)
+}
+
+
+
+# helper for shared boundaries
+check_shared_boundaries <- function(textgrid_file){
+  # read in textgrid
+  textgrid = readtextgrid::read_textgrid(textgrid_file)
+
+  # check mins and maxs
+  xmin1 = textgrid[textgrid$tier_num == 1, ]$xmin
+  xmin2 = textgrid[textgrid$tier_num == 2, ]$xmin
+  xmax1 = textgrid[textgrid$tier_num == 1, ]$xmax
+  xmax2 = textgrid[textgrid$tier_num == 2, ]$xmax
+
+  # remove zeros
+  xmin1 = xmin1[xmin1 != 0]
+  xmin2 = xmin2[xmin2 != 0]
+  xmax1 = xmax1[xmax1 != 0]
+  xmax2 = xmax2[xmax2 != 0]
+
+  min_overlap = sum(xmin1 %in% xmin2)/length(xmin1)
+  max_overlap = sum(xmax1 %in% xmax2)/length(xmax1)
+
+  if (min_overlap > .3 || max_overlap > .3){
+    cli::cli_alert_warning("The Silence/Sounding TextGrid found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
+    cli::cli_alert_warning("This suggests there is an issue with the threshold parameter (or others).")
+  }
 }
