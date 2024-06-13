@@ -12,6 +12,7 @@
 #' @importFrom speakr praat_run
 #' @importFrom glue glue
 #' @importFrom readtextgrid read_textgrid
+#' @importFrom scales number
 #'
 #' @export
 get_boundaries <- function(folder, min_pitch, time_step, threshold, min_silent_int, min_sound_int){
