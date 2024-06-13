@@ -59,15 +59,16 @@ endform"})
 
 
 # helper for shared boundaries
-check_shared_boundaries <- function(textgrid_file){
+check_shared_boundaries <- function(textgrid_files){
   # read in textgrid
-  textgrid = readtextgrid::read_textgrid(textgrid_file)
+  textgrid1 = readtextgrid::read_textgrid(textgrid_files[1])
+  textgrid2 = readtextgrid::read_textgrid(textgrid_files[2])
 
   # check mins and maxs
-  xmin1 = textgrid[textgrid$tier_num == 1, ]$xmin
-  xmin2 = textgrid[textgrid$tier_num == 2, ]$xmin
-  xmax1 = textgrid[textgrid$tier_num == 1, ]$xmax
-  xmax2 = textgrid[textgrid$tier_num == 2, ]$xmax
+  xmin1 = textgrid1$xmin
+  xmin2 = textgrid2$xmin
+  xmax1 = textgrid1$xmax
+  xmax2 = textgrid2$xmax
 
   # remove zeros
   xmin1 = xmin1[xmin1 != 0]
