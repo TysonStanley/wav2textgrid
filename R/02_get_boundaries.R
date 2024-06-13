@@ -76,11 +76,25 @@ check_shared_boundaries <- function(textgrid_files){
   xmax1 = xmax1[xmax1 != 0]
   xmax2 = xmax2[xmax2 != 0]
 
-  min_overlap = sum(xmin1 %in% xmin2)/length(xmin1)
-  max_overlap = sum(xmax1 %in% xmax2)/length(xmax1)
+  # truncate to nearest tenth of a second
+  xmin1 = scales::number(xmin1, accuracy = .1)
+  xmin2 = scales::number(xmin2, accuracy = .1)
+  xmax1 = scales::number(xmax1, accuracy = .1)
+  xmax2 = scales::number(xmax2, accuracy = .1)
 
-  if (min_overlap > .3 || max_overlap > .3){
-    cli::cli_alert_warning("The Silence/Sounding TextGrid found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
+  # check overlap
+  min_overlap1 = sum(xmin1 %in% xmin2)/length(xmin1)
+  max_overlap1 = sum(xmax1 %in% xmax2)/length(xmax1)
+  min_overlap2 = sum(xmin2 %in% xmin1)/length(xmin2)
+  max_overlap2 = sum(xmax2 %in% xmax1)/length(xmax2)
+
+  # warn if necessary
+  if (min_overlap1 > .3 || max_overlap1 > .3){
+    cli::cli_alert_warning("The Silence/Sounding TextGrid for Channel 1 found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
+    cli::cli_alert_warning("This suggests there is an issue with the threshold parameter (or others).")
+  }
+  if (min_overlap2 > .3 || max_overlap2 > .3){
+    cli::cli_alert_warning("The Silence/Sounding TextGrid for Channel 2 found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
     cli::cli_alert_warning("This suggests there is an issue with the threshold parameter (or others).")
   }
 }
