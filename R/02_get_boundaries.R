@@ -49,7 +49,8 @@ endform"})
   speakr::praat_run(script_file, folder, '""', 1)
 
   # check output
-  check_shared_boundaries(script_file)
+  textgrid_to_check = fs::dir_ls(folder, regexp = "TextGrid$")
+  check_shared_boundaries(textgrid_to_check)
 
   # if successful return 1
   return(1)
