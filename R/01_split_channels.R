@@ -33,6 +33,10 @@ split_channels <- function(wav_file, noise_reduction = FALSE, threshold = 200, p
 
   if (plot) tuneR::plot(left); tuneR::plot(right)
 
+  # delete tmp folder if already exists
+  if (fs::dir_exists(file.path(fs::path_dir(wav_file), "tmp")))
+    fs::dir_delete(file.path(fs::path_dir(wav_file), "tmp"))
+
   # move files to tmp folder
   fs::dir_create(file.path(fs::path_dir(wav_file), "tmp"))
   file1 = fs::path_file(ch1)

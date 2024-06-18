@@ -15,6 +15,7 @@
 #' (see https://github.com/openai/whisper/blob/main/model-card.md).
 #' @param prompt Can prompt the model with words, names, spellings you want it to use.
 #' Default prompts the use of backchannels, repetitions, and other conversational patterns.
+#' @param plot plot the amplitude? Default is FALSE.
 #'
 #' @importFrom fs path_split
 #' @importFrom fs dir_ls
@@ -35,7 +36,8 @@ auto_textgrid <- function(
     min_silent_int = 0.5,
     min_sound_int = 0.1,
     model_type = "base",
-    prompt = NULL
+    prompt = NULL,
+    plot = FALSE
   ){
   # default prompt
   if (is.null(prompt)){
@@ -45,7 +47,7 @@ auto_textgrid <- function(
 
   # Step 1
   cli::cli_progress_step("Step 1 of 5")
-  step1 = split_channels(wav_file, threshold = 200, plot = TRUE)
+  step1 = split_channels(wav_file, threshold = 200, plot = plot)
   folder = fs::path_dir(step1[2])
 
   # Step 2

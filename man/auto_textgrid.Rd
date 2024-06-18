@@ -13,7 +13,8 @@ auto_textgrid(
   min_silent_int = 0.5,
   min_sound_int = 0.1,
   model_type = "base",
-  prompt = NULL
+  prompt = NULL,
+  plot = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ Other options are in order of complexity: tiny, base, small, medium, and large
 
 \item{prompt}{Can prompt the model with words, names, spellings you want it to use.
 Default prompts the use of backchannels, repetitions, and other conversational patterns.}
+
+\item{plot}{plot the amplitude? Default is FALSE.}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a
