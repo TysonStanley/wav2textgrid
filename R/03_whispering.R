@@ -58,7 +58,8 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
 
   # channel 1
   result1 = vector("list", length = length(ch1_files))
-  cli::cli_progress_bar("Transcribing Channel 1 | ", total = length(ch1_files))
+  message1 = paste0("Transcribing Channel 1 | n = ", length(ch1_files), " |")
+  cli::cli_progress_bar(message1, total = length(ch1_files))
   for (i in seq_along(ch1_files)){
     result1[[i]] = model$transcribe(ch1_files[[i]], fp16 = FALSE, initial_prompt = prompt)
     cli::cli_progress_update(set = i)
@@ -66,7 +67,8 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
 
   # channel 2
   result2 = vector("list", length = length(ch2_files))
-  cli::cli_progress_bar("Transcribing Channel 2 | ", total = length(ch2_files))
+  message2 = paste0("Transcribing Channel 2 | n = ", length(ch2_files), " |")
+  cli::cli_progress_bar(message2, total = length(ch2_files))
   for (i in seq_along(ch2_files)){
     result2[[i]] = model$transcribe(ch2_files[[i]], fp16 = FALSE, initial_prompt = prompt)
     cli::cli_progress_update(set = i)
