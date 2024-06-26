@@ -12,7 +12,7 @@ make_textgrid <- function(data, wav_file){
   textgrid_header <- paste0(
     'File type = "ooTextFile"\n',
     'Object class = "TextGrid"\n\nxmin = 0\n',
-    'xmax = ', max(data$tier_xmax, na.rm=TRUE), '\n',
+    'xmax = ', max(data$end, na.rm=TRUE), '\n',
     'tiers? <exists>\n',
     'size = 2\nitem []:\n'
   )
@@ -29,15 +29,24 @@ make_textgrid <- function(data, wav_file){
     )
 
     textgrid_content = ""
-    for (i in 1:length(d_chan$start)) {
+    length_chan = length(d_chan$start)
+    for (i in 1:length_chan) {
+      # ensure last timing is the end of the audio file
+      if (i == length_chan) {
+        xmax_end = max(data$end, na.rm = TRUE)
+      } else {
+        xmax_end = d_chan$end[i]
+      }
+
       textgrid_content <- paste0(
         textgrid_content,
         sprintf('        intervals [%d]:\n', i),
         sprintf('            xmin = %f\n', d_chan$start[i]),
-        sprintf('            xmax = %f\n', d_chan$end[i]),
+        sprintf('            xmax = %f\n', xmax_end),
         sprintf('            text = "%s"\n', d_chan$text[i])
       )
     }
+
     chan_texgrid[[chan]] = paste0(textgrid_channel_start, textgrid_content)
   }
 
