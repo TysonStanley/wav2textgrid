@@ -31,6 +31,8 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
   # import channels
   ch1_audio = tuneR::readWave(ch1)
   ch2_audio = tuneR::readWave(ch2)
+  sample_freq1 = ch1_audio@samp.rate
+  sample_freq2 = ch2_audio@samp.rate
 
   # create segmented audio
   ch1_files = vector("list", length = nrow(timings1))
@@ -38,7 +40,7 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
     rows = timings1[i]
     start = if (rows$start-0.2 < 0) 0 else rows$start-0.2
     end = if (rows$end+0.2 > max(rows$end)) rows$end else rows$end+0.2
-    audio_seg1 = seewave::cutw(ch1_audio, f = 44100, from = start, to = end, output = "Wave")
+    audio_seg1 = seewave::cutw(ch1_audio, f = sample_freq1, from = start, to = end, output = "Wave")
     tuneR::writeWave(audio_seg1, filename = fs::path(folder, paste0("ch1_segment_", i, ".wav")))
     ch1_files[[i]] = fs::path(folder, paste0("ch1_segment_", i, ".wav"))
   }
@@ -47,7 +49,7 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
     rows = timings2[i]
     start = if (rows$start-0.2 < 0) 0 else rows$start-0.2
     end = if (rows$end+0.2 > max(rows$end)) rows$end else rows$end+0.2
-    audio_seg2 = seewave::cutw(ch2_audio, f = 44100, from = start, to = end, output = "Wave")
+    audio_seg2 = seewave::cutw(ch2_audio, f = sample_freq2, from = start, to = end, output = "Wave")
     tuneR::writeWave(audio_seg2, filename = fs::path(folder, paste0("ch2_segment_", i, ".wav")))
     ch2_files[[i]] = fs::path(folder, paste0("ch2_segment_", i, ".wav"))
   }
