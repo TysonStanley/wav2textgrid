@@ -35,7 +35,7 @@ endform"})
     script <- glue::glue({"
 #start praat
 form Enter directory and search string
-    sentence Directory {folder}\\ \n
+    sentence Directory {folder}/ \n
     sentence Word
     boolean anotate_silences 1
 endform"})
