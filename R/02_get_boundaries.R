@@ -23,13 +23,24 @@ get_boundaries <- function(folder, min_pitch, time_step, threshold, min_silent_i
   #   Minimum silent interval (s)
   #   Minimum sounding interval (s)
 
-  script <- glue::glue({"
+  if (stringr::str_detect(Sys.info()['sysname'], "Darwin|Linux")){
+    script <- glue::glue({"
 #start praat
 form Enter directory and search string
     sentence Directory {folder}
     sentence Word
     boolean anotate_silences 1
 endform"})
+  } else {
+    script <- glue::glue({"
+#start praat
+form Enter directory and search string
+    sentence Directory {folder}/\n
+    sentence Word
+    boolean anotate_silences 1
+endform"})
+  }
+
   script <- glue::glue(script, '\n\n', "Create Strings as file list... file-list 'directory$''word$'*.wav")
   script <- glue::glue(script, '\n\n', "number_of_files = Get number of strings")
   script <- glue::glue(script, '\n\n', "for x from 1 to number_of_files")
