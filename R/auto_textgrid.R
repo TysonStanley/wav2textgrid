@@ -16,6 +16,10 @@
 #' @param prompt Can prompt the model with words, names, spellings you want it to use.
 #' Default prompts the use of backchannels, repetitions, and other conversational patterns.
 #' @param plot plot the amplitude? Default is FALSE.
+#' @param keep_partial Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.
+#' @param hyphen Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.
+#' @param remove_apostrophe Should all apostraphes be removed? Default is FALSE.
+#' @param remove_punct Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.
 #'
 #' @importFrom fs path_split
 #' @importFrom fs dir_ls
@@ -37,7 +41,11 @@ auto_textgrid <- function(
     min_sound_int = 0.1,
     model_type = "base",
     prompt = NULL,
-    plot = FALSE
+    plot = FALSE,
+    keep_partial = FALSE,
+    hyphen = "space",
+    remove_apostrophe = FALSE,
+    remove_punct = FALSE
   ){
   # default prompt
   if (is.null(prompt)){
@@ -61,7 +69,7 @@ auto_textgrid <- function(
 
   # Step 4
   cli::cli_progress_step("\nStep 4 of 5")
-  cleaned = clean_up(whispered[[1]], whispered[[2]], folder = folder)
+  cleaned = clean_up(whispered[[1]], whispered[[2]], folder = folder, keep_partial = keep_partial, hyphen = hyphen, remove_apostrophe = remove_apostrophe, remove_punct = remove_punct)
 
   # Step 5
   cli::cli_progress_step("Step 5 of 5")

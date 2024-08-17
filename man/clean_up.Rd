@@ -4,7 +4,15 @@
 \alias{clean_up}
 \title{Clean Up Whisper Output}
 \usage{
-clean_up(whispered1, whispered2, folder)
+clean_up(
+  whispered1,
+  whispered2,
+  folder,
+  keep_partial,
+  hyphen,
+  remove_apostrophe,
+  remove_punct
+)
 }
 \arguments{
 \item{whispered1}{channel one whisper data output}
@@ -12,6 +20,14 @@ clean_up(whispered1, whispered2, folder)
 \item{whispered2}{channel two whisper data output}
 
 \item{folder}{the folder where the files are located}
+
+\item{keep_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
+
+\item{hyphen}{Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.}
+
+\item{remove_apostrophe}{Should all apostraphes be removed? Default is FALSE.}
+
+\item{remove_punct}{Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.}
 }
 \description{
 Cleans up the data to get it ready for making

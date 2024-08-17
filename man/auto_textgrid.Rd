@@ -14,7 +14,11 @@ auto_textgrid(
   min_sound_int = 0.1,
   model_type = "base",
   prompt = NULL,
-  plot = FALSE
+  plot = FALSE,
+  keep_partial = FALSE,
+  hyphen = "space",
+  remove_apostrophe = FALSE,
+  remove_punct = FALSE
 )
 }
 \arguments{
@@ -40,6 +44,14 @@ Other options are in order of complexity: tiny, base, small, medium, and large
 Default prompts the use of backchannels, repetitions, and other conversational patterns.}
 
 \item{plot}{plot the amplitude? Default is FALSE.}
+
+\item{keep_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
+
+\item{hyphen}{Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.}
+
+\item{remove_apostrophe}{Should all apostraphes be removed? Default is FALSE.}
+
+\item{remove_punct}{Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a
