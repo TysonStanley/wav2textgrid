@@ -1,3 +1,5 @@
+#' @importFrom fs file_exists
+
 .onLoad <- function(libname = find.package("wav2textgrid"),
                     pkgname = "wav2textgrid") {
 
@@ -12,7 +14,7 @@
   if (sys == "Linux") path = "/usr/bin/praat"
   if (sys == "Windows") path = "C:/Program Files/Praat.exe"
 
-  if (file.exists(path)){
+  if (fs::file_exists(path)){
     options(wav2textgrid.praat.path = path)
   }
 
@@ -25,7 +27,7 @@
 
   path = getOption("wav2textgrid.praat.path")
 
-  if (file.exists(path)){
+  if (fs::file_exists(path)){
     packageStartupMessage(paste("Praat found at", path))
   } else
     packageStartupMessage(paste("Did not find Praat at default location (", path, ").\nPlease run `set_praat_path()` with the path to your Praat application."))
