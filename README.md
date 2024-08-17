@@ -67,20 +67,20 @@ example above (found on GitHub in the `inst` folder), running the code
 above gives us the following TextGrid (as shown by reading it in using
 `readtextgrid`).
 
-    #> # A tibble: 270 × 6
+    #> # A tibble: 254 × 6
     #>    tier_num tier_xmin tier_xmax  xmin  xmax text                                
     #>       <dbl>     <dbl>     <dbl> <dbl> <dbl> <chr>                               
-    #>  1        1         0      281.  0     1.48 n                                   
-    #>  2        1         0      281.  1.48  5.15 i'm participant one on channel one  
-    #>  3        1         0      281.  5.15  5.80 n                                   
-    #>  4        1         0      281.  5.80 23.5  ok um you want to start in the top …
-    #>  5        1         0      281. 23.5  24.3  n                                   
-    #>  6        1         0      281. 24.3  38.0  and then i have another towel that'…
-    #>  7        1         0      281. 38.0  38.9  n                                   
-    #>  8        1         0      281. 38.9  41.3  i don't think anything fell out of …
-    #>  9        1         0      281. 41.3  41.8  n                                   
-    #> 10        1         0      281. 41.8  43.1  green ok                            
-    #> # ℹ 260 more rows
+    #>  1        1         0      281.  0     1.49 n                                   
+    #>  2        1         0      281.  1.49  4.43 i am participant one on channel one 
+    #>  3        1         0      281.  4.43  8.31 n                                   
+    #>  4        1         0      281.  8.31  8.96 ok                                  
+    #>  5        1         0      281.  8.96  9.48 n                                   
+    #>  6        1         0      281.  9.48 11.7  um you want to start in the top lef…
+    #>  7        1         0      281. 11.7  15.4  n                                   
+    #>  8        1         0      281. 15.4  15.7  yes                                 
+    #>  9        1         0      281. 15.7  17.8  n                                   
+    #> 10        1         0      281. 17.8  19.4  mine says peggy sue                 
+    #> # ℹ 244 more rows
 
 Importantly, we can control a number of features of the transcription to
 make it more accurate. In this case, we used a noise reduction program
@@ -90,3 +90,6 @@ and set the threshold of silences to -30 dB. We also use the larger
 ``` r
 auto_textgrid(wav_file, noise_reduction = TRUE, threshold = -30, model_type = "small")
 ```
+
+We do recommend the “small” model or larger for more accurate
+transcription, especially when using the default prompt.

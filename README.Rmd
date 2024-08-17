@@ -96,3 +96,4 @@ Importantly, we can control a number of features of the transcription to make it
 auto_textgrid(wav_file, noise_reduction = TRUE, threshold = -30, model_type = "small")
 ```
 
+We do recommend the "small" model or larger for more accurate transcription, especially when using the default prompt.
