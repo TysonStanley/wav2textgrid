@@ -29,19 +29,25 @@ devtools::install_github("TysonStanley/wav2textgrid")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### Python Environment Set Up
 
 ``` r
+library(wav2textgrid)
+py_setup(path)
+# this runs the following
 # wav2textgrid relies on the python (the OpenAI whisper model)
-reticulate::use_miniconda("path/r-miniconda-arm64")
+# reticulate::use_miniconda("path/r-miniconda-arm64")
 # if the following python packages are not installed, use:
 # packages = c("ffmpeg-python", "numpy", "scipy", "setuptools-rust", "pydub", "llvmlite", "librosa", "numba",
 #              "Cmake", "wheel", "setuptools-rust", "pytorch", "torchvision")
 # reticulate::conda_install(envname = "~/Desktop/Automation/r-py-automate", packages = packages)
 # reticulate::py_install("openai-whisper", pip = TRUE, pip_options = "-U")
 # reticulate::py_install("light-the-torch", pip = TRUE, pip_options = "-U")
+```
 
-library(wav2textgrid)
+### Run `auto_textgrid()`
+
+``` r
 wav_file = "path/example.wav"
 auto_textgrid(wav_file)
 ```
@@ -75,3 +81,12 @@ above gives us the following TextGrid (as shown by reading it in using
     #>  9        1         0      281. 41.3  41.8  n                                   
     #> 10        1         0      281. 41.8  43.1  green ok                            
     #> # ℹ 260 more rows
+
+Importantly, we can control a number of features of the transcription to
+make it more accurate. In this case, we used a noise reduction program
+and set the threshold of silences to -30 dB. We also use the larger
+“small” model from Whisper.
+
+``` r
+auto_textgrid(wav_file, noise_reduction = TRUE, threshold = -30, model_type = "small")
+```
