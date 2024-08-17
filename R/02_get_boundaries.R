@@ -9,7 +9,6 @@
 #' @param min_silent_int Minimum silent interval (s)
 #' @param min_sound_int Minimum sounding interval (s)
 #'
-#' @importFrom speakr praat_run
 #' @importFrom glue glue
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom scales number
@@ -58,7 +57,8 @@ endform"})
   script_file <- paste0(folder, "temp.praat")
   writeLines(script, con = script_file)
 
-  speakr::praat_run(script_file, folder, '""', 1)
+  # run praat on the created script
+  run_praat(args = paste0('--run "', script_file, '" ', '"', folder, '" "" 1'))
 
   # check output
   textgrid_to_check = fs::dir_ls(folder, regexp = "TextGrid$")
@@ -66,6 +66,32 @@ endform"})
 
   # if successful return 1
   return(1)
+}
+
+
+#' @title Praat File Path
+#'
+#' @description
+#' This allows the user to define where their Praat installation is located if not in the default.
+#'
+#' @param path The path to a Praat executable file. If NULL, then uses the default for the system.
+#'
+#' @export
+set_praat_path <- function(path = NULL){
+  if (is.null(path)){
+    sys = Sys.info()[['sysname']]
+
+    if (sys == "Darwin") path = "/Applications/Praat.app/Contents/MacOS/Praat"
+    if (sys == "Linux") path = "/usr/bin/praat"
+    if (sys == "Windows") path = "C:/Program Files/Praat.exe"
+  }
+  options(wav2textgrid.praat.path = path)
+}
+
+
+# run praat
+run_praat <- function(args){
+  system2(getOption("wav2textgrid.praat.path"), args)
 }
 
 
