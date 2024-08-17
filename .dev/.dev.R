@@ -1,5 +1,7 @@
 devtools::document(here::here())
 devtools::check(here::here())
+devtools::load_all(here::here())
+
 usethis::use_readme_rmd(here::here())
 usethis::use_lifecycle_badge("experimental")
 usethis::use_cran_badge()
