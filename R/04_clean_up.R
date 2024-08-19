@@ -16,11 +16,11 @@
 #' @importFrom tibble tibble
 #' @import data.table
 #' @importFrom readtextgrid read_textgrid
-#' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom stringr str_replace_all
 #' @importFrom stringr str_squish
 #' @importFrom furniture washer
+#' @importFrom english english
 #'
 #' @export
 clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, remove_apostrophe, remove_punct){
@@ -85,6 +85,11 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   final[, text := gsub("mm\\-hmm", "mmhmm", text)]
   final[, text := gsub("uh\\-huh", "uhhuh", text)]
   final[, text := gsub("\\bk\\b", "kay", text)]
+
+  # numbers
+  final[, text := convert_numerals_to_words(text)]
+
+  # options
   if (remove_partial)
     final[, text := gsub("\\b\\w+-\\s*$", "", text)]
   if (hyphen == "space")
@@ -96,9 +101,22 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   if (remove_punct)
     final[, text := gsub("[^[:alnum:]'\\s-]", " ", text)]
 
-  final[, text := stringr::str_trim(text)]
+  # clean up
+  final[, text := stringr::str_squish(text)]
   final[, end := furniture::washer(end, is.na, value = max(end, na.rm=TRUE))]
   return(final)
+}
+
+
+# numerals to words
+convert_numerals_to_words <- function(text) {
+  # Define a function to replace a single match
+  replace_function <- function(match) {
+    as.character(english::english(as.numeric(match)))
+  }
+
+  # Use stringr's str_replace_all with the replace function
+  stringr::str_replace_all(text, "\\d+", replace_function)
 }
 
 
