@@ -69,7 +69,7 @@ auto_textgrid <- function(
 
   # Step 4
   cli::cli_progress_step("\nStep 4 of 5")
-  cleaned = clean_up(whispered[[1]], whispered[[2]], folder = folder, keep_partial = keep_partial, hyphen = hyphen, remove_apostrophe = remove_apostrophe, remove_punct = remove_punct)
+  cleaned = clean_up(whispered[[1]], whispered[[2]], folder = folder, remove_partial = remove_partial, hyphen = hyphen, remove_apostrophe = remove_apostrophe, remove_punct = remove_punct)
 
   # Step 5
   cli::cli_progress_step("Step 5 of 5")
