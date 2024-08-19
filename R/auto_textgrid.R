@@ -43,7 +43,7 @@ auto_textgrid <- function(
     prompt = NULL,
     plot = FALSE,
     remove_partial = FALSE,
-    hyphen = "space",
+    hyphen = "keep",
     remove_apostrophe = FALSE,
     remove_punct = FALSE
   ){
