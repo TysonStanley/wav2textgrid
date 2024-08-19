@@ -6,7 +6,7 @@
 #' @param whispered1 channel one whisper data output
 #' @param whispered2 channel two whisper data output
 #' @param folder the folder where the files are located
-#' @param keep_partial Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.
+#' @param remove_partial Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.
 #' @param hyphen Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.
 #' @param remove_apostrophe Should all apostraphes be removed? Default is FALSE.
 #' @param remove_punct Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.
@@ -23,7 +23,7 @@
 #' @importFrom furniture washer
 #'
 #' @export
-clean_up <- function(whispered1, whispered2, folder, keep_partial, hyphen, remove_apostrophe, remove_punct){
+clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, remove_apostrophe, remove_punct){
   # grab segments
   chan1 = purrr::map(whispered1, ~.x[["segments"]])
   chan2 = purrr::map(whispered2, ~.x[["segments"]])
@@ -85,7 +85,7 @@ clean_up <- function(whispered1, whispered2, folder, keep_partial, hyphen, remov
   final[, text := gsub("mm\\-hmm", "mmhmm", text)]
   final[, text := gsub("uh\\-huh", "uhhuh", text)]
   final[, text := gsub("\\bk\\b", "kay", text)]
-  if (! keep_partial)
+  if (remove_partial)
     final[, text := gsub("\\b\\w+-\\s*$", "", text)]
   if (hyphen == "space")
     final[, text := gsub("\\-", " ", text)]
