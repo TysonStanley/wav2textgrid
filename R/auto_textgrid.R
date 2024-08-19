@@ -60,7 +60,7 @@ auto_textgrid <- function(
 
   # Step 2
   cli::cli_progress_step("Step 2 of 5")
-  folder2 <- if (stringr::str_detect(osVersion, "Window|window")) paste0(folder, "\\") else paste0(folder, "/")
+  folder2 <- if (stringr::str_detect(osVersion, "Window|window")) paste0(folder, "/") else paste0(folder, "/")
   step2 = get_boundaries(folder2, min_pitch, time_step, threshold, min_silent_int, min_sound_int)
 
   # Step 3
