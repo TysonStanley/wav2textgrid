@@ -15,8 +15,8 @@ auto_textgrid(
   model_type = "base",
   prompt = NULL,
   plot = FALSE,
-  keep_partial = FALSE,
-  hyphen = "space",
+  remove_partial = FALSE,
+  hyphen = "keep",
   remove_apostrophe = FALSE,
   remove_punct = FALSE
 )
@@ -45,7 +45,7 @@ Default prompts the use of backchannels, repetitions, and other conversational p
 
 \item{plot}{plot the amplitude? Default is FALSE.}
 
-\item{keep_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
+\item{remove_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
 
 \item{hyphen}{Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.}
 

@@ -8,7 +8,7 @@ clean_up(
   whispered1,
   whispered2,
   folder,
-  keep_partial,
+  remove_partial,
   hyphen,
   remove_apostrophe,
   remove_punct
@@ -21,7 +21,7 @@ clean_up(
 
 \item{folder}{the folder where the files are located}
 
-\item{keep_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
+\item{remove_partial}{Should the model keep words that are incomplete at the end of the sentence? Default is FALSE.}
 
 \item{hyphen}{Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.}
 
