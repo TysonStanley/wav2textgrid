@@ -64,6 +64,7 @@ auto_textgrid <- function(
   step2 = get_boundaries(folder2, min_pitch, time_step, threshold, min_silent_int, min_sound_int)
 
   # Step 3
+  message("starting step 3")
   cli::cli_progress_step("Step 3 of 5")
   whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type, prompt = prompt)
 

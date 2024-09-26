@@ -57,22 +57,12 @@ endform"})
   script_file <- paste0(folder, "temp.praat")
   writeLines(script, con = script_file)
 
-  # temporary message to debug on other machines
-  # message(paste0("Path of script file: ", script_file, "\nPath of folder: ", folder))
-  # message(paste0("Args :", '--run "', script_file, '" ', '"', folder, '" "" 1'))
-
   # run praat on the created script
   run_praat(args = paste0('--run "', script_file, '" ', '"', folder, '" "" 1'))
-
-  # temp message
-  message("completed praat")
 
   # check output
   textgrid_to_check = fs::dir_ls(folder, regexp = "TextGrid$")
   check_shared_boundaries(textgrid_to_check)
-
-  # temp message
-  message("completed shared boundaries check")
 
   # if successful return 1
   return(1)

@@ -53,15 +53,20 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
     tuneR::writeWave(audio_seg2, filename = fs::path(folder, paste0("ch2_segment_", i, ".wav")))
     ch2_files[[i]] = fs::path(folder, paste0("ch2_segment_", i, ".wav"))
   }
+  message("finished segmenting")
 
   # set up model
   whisper = reticulate::import("whisper")
   model = whisper$load_model(model_type)
 
+  message("set up model")
+
   # channel 1
   result1 = vector("list", length = length(ch1_files))
   message1 = paste0("Transcribing Channel 1 | n = ", length(ch1_files), " |")
   cli::cli_progress_bar(message1, total = length(ch1_files))
+
+  message("starting trascription")
   for (i in seq_along(ch1_files)){
     result1[[i]] = model$transcribe(ch1_files[[i]], fp16 = FALSE, initial_prompt = prompt)
     cli::cli_progress_update(set = i)
