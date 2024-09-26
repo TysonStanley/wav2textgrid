@@ -5,8 +5,9 @@
 #' @param ch1 channel 1 file
 #' @param ch2 channel 2 file
 #' @param folder folder of the files
-#' @param model_type the type of Whisper model to run, default is "base"
+#' @param model_type the type of Whisper model to run
 #' @param prompt Can prompt the model with words, names, spellings you want it to use.
+#' @param whisp the reticulated whisper model (e.g. produced via `whisper = reticulate::import("whisper"); model = whisper$load_model(model_type)`)
 #'
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom glue glue
@@ -19,7 +20,7 @@
 #' @importFrom cli cli_progress_update
 #'
 #' @export
-whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
+whispering <- function(ch1, ch2, folder, model_type, prompt, whisp = NULL){
   # grab silence/sounding timings
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
   chan2_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch2.wav_silences"))
@@ -54,10 +55,11 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
     ch2_files[[i]] = fs::path(folder, paste0("ch2_segment_", i, ".wav"))
   }
 
-  # set up model
-  whisper = reticulate::import("whisper")
-  browser()
-  model = whisper$load_model(model_type)
+  # set up model if not provided
+  if (!is.null(whisp)){
+    whisper = reticulate::import("whisper")
+    model = whisper$load_model(model_type)
+  }
 
   # channel 1
   result1 = vector("list", length = length(ch1_files))

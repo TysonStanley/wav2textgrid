@@ -20,6 +20,7 @@
 #' @param hyphen Should hyphens be retained or replaced? Options are "space" (hyphens are replaced with a space), "keep" (the hyphens are retained), "remove" the hyphens are removed with no white space added.
 #' @param remove_apostrophe Should all apostraphes be removed? Default is FALSE.
 #' @param remove_punct Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.
+#' @param whisp the reticulated whisper model (e.g. produced via `whisper = reticulate::import("whisper"); model = whisper$load_model(model_type)`)
 #'
 #' @importFrom fs path_split
 #' @importFrom fs dir_ls
@@ -45,7 +46,8 @@ auto_textgrid <- function(
     remove_partial = FALSE,
     hyphen = "keep",
     remove_apostrophe = FALSE,
-    remove_punct = FALSE
+    remove_punct = FALSE,
+    whisp = NULL
   ){
   # default prompt
   if (is.null(prompt)){
@@ -60,11 +62,10 @@ auto_textgrid <- function(
 
   # Step 2
   cli::cli_progress_step("Step 2 of 5")
-  folder2 <- if (stringr::str_detect(osVersion, "Window|window")) paste0(folder, "/") else paste0(folder, "/")
+  folder2 = if (stringr::str_detect(osVersion, "Window|window")) paste0(folder, "/") else paste0(folder, "/")
   step2 = get_boundaries(folder2, min_pitch, time_step, threshold, min_silent_int, min_sound_int)
 
   # Step 3
-  message("starting step 3")
   cli::cli_progress_step("Step 3 of 5")
   whispered = whispering(step1[1], step1[2], folder = folder, model_type = model_type, prompt = prompt)
 
@@ -78,7 +79,9 @@ auto_textgrid <- function(
   cli::cli_progress_done()
   cli::cli_alert_info(paste0("Written to ", paste0(str_remove(wav_file, "\\.wav"), "_output.TextGrid\n")))
 
-  ## Delete intermediate files
+  # clean up
+  on.exit(cli::cli_progress_done())
+  # Delete intermediate files
   fs::dir_delete(folder)
 }
 

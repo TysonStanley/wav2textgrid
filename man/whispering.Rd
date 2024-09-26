@@ -4,7 +4,7 @@
 \alias{whispering}
 \title{Whisper Transcription}
 \usage{
-whispering(ch1, ch2, folder, model_type = "base", prompt)
+whispering(ch1, ch2, folder, model_type, prompt, whisp = NULL)
 }
 \arguments{
 \item{ch1}{channel 1 file}
@@ -13,9 +13,11 @@ whispering(ch1, ch2, folder, model_type = "base", prompt)
 
 \item{folder}{folder of the files}
 
-\item{model_type}{the type of Whisper model to run, default is "base"}
+\item{model_type}{the type of Whisper model to run}
 
 \item{prompt}{Can prompt the model with words, names, spellings you want it to use.}
+
+\item{whisp}{the reticulated whisper model (e.g. produced via \verb{whisper = reticulate::import("whisper"); model = whisper$load_model(model_type)})}
 }
 \description{
 Applies the OpenAI Whisper model to transcribe the conversation

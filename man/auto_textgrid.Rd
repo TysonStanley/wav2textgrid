@@ -18,7 +18,8 @@ auto_textgrid(
   remove_partial = FALSE,
   hyphen = "keep",
   remove_apostrophe = FALSE,
-  remove_punct = FALSE
+  remove_punct = FALSE,
+  whisp = NULL
 )
 }
 \arguments{
@@ -52,6 +53,8 @@ Default prompts the use of backchannels, repetitions, and other conversational p
 \item{remove_apostrophe}{Should all apostraphes be removed? Default is FALSE.}
 
 \item{remove_punct}{Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.}
+
+\item{whisp}{the reticulated whisper model (e.g. produced via \verb{whisper = reticulate::import("whisper"); model = whisper$load_model(model_type)})}
 }
 \description{
 Takes all of the steps and puts them together to produce a textgrid from a
