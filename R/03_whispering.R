@@ -56,7 +56,7 @@ whispering <- function(ch1, ch2, folder, model_type = "base", prompt){
 
   # set up model
   whisper = reticulate::import("whisper")
-  message("imported whisper")
+  browser()
   model = whisper$load_model(model_type)
 
   # channel 1
