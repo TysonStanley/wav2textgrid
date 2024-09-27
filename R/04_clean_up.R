@@ -51,8 +51,8 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   colnames(chan1_silences)[which(colnames(chan1_silences) == "xmax")] = "end"
   colnames(chan2_silences)[which(colnames(chan2_silences) == "xmin")] = "start"
   colnames(chan2_silences)[which(colnames(chan2_silences) == "xmax")] = "end"
-  chan1_silences = chan1_silences[chan1_silences$text == "sounding"]
-  chan2_silences = chan2_silences[chan2_silences$text == "sounding"]
+  chan1_silences = chan1_silences[chan1_silences$text == "sounding", ]
+  chan2_silences = chan2_silences[chan2_silences$text == "sounding", ]
   chan1_silences = chan1_silences[, -which(colnames(chan1_silences) == "text")]
   chan2_silences = chan2_silences[, -which(colnames(chan2_silences) == "text")]
 
