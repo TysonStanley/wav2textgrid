@@ -11,7 +11,7 @@
 #' @param remove_apostrophe Should all apostraphes be removed? Default is FALSE.
 #' @param remove_punct Should all punctuation be removed (other than hyphens and apostrophes)? Default is FALSE.
 #'
-#' @import reticulate
+#' @importFrom reticulate import
 #' @importFrom purrr map
 #' @importFrom tibble tibble
 #' @import data.table
