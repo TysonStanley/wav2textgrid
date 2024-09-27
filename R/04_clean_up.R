@@ -14,7 +14,11 @@
 #' @importFrom reticulate import
 #' @importFrom purrr map
 #' @importFrom tibble tibble
-#' @import data.table
+#' @importFrom dplyr lead
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr arrange
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom stringr str_remove_all
 #' @importFrom stringr str_replace_all
@@ -36,74 +40,80 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
 
   chan1_text = tolower(chan1_text)
   chan1_text = stringr::str_squish(stringr::str_remove_all(chan1_text, "\\.|\\,"))
-  chan1_text = data.table::data.table(text = chan1_text)
+  chan1_text = data.frame(text = chan1_text)
   chan2_text = tolower(chan2_text)
-  chan2_text = data.table::data.table(text = chan2_text)
+  chan2_text = data.frame(text = chan2_text)
 
   # grab silences file
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
   chan2_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch2.wav_silences"))
-  data.table::setDT(chan1_silences)
-  data.table::setDT(chan2_silences)
-  data.table::setnames(chan1_silences, old = c("xmin", "xmax"), new = c("start", "end"))
-  data.table::setnames(chan2_silences, old = c("xmin", "xmax"), new = c("start", "end"))
-  chan1_silences = chan1_silences[text == "sounding"]
-  chan2_silences = chan2_silences[text == "sounding"]
-  chan1_silences[, text := NULL]
-  chan2_silences[, text := NULL]
+  colnames(chan1_silences)[which(colnames(chan1_silences) == "xmin")] = "start"
+  colnames(chan1_silences)[which(colnames(chan1_silences) == "xmax")] = "end"
+  colnames(chan2_silences)[which(colnames(chan2_silences) == "xmin")] = "start"
+  colnames(chan2_silences)[which(colnames(chan2_silences) == "xmax")] = "end"
+  chan1_silences = chan1_silences[chan1_silences$text == "sounding"]
+  chan2_silences = chan2_silences[chan2_silences$text == "sounding"]
+  chan1_silences = chan1_silences[, -which(colnames(chan1_silences) == "text")]
+  chan2_silences = chan2_silences[, -which(colnames(chan2_silences) == "text")]
 
   # join with text
   chan1_joined = cbind(chan1_silences, chan1_text)
   chan2_joined = cbind(chan2_silences, chan2_text)
 
   # channels
-  chan1_joined[, channel := 1]
-  chan2_joined[, channel := 2]
+  chan1_joined$channel = 1
+  chan2_joined$channel = 2
 
   # add "n" for non-speech
-  non1 = chan1_joined[, .(start = end, end = data.table::shift(start, type = "lead"))]
-  non2 = chan2_joined[, .(start = end, end = data.table::shift(start, type = "lead"))]
-  non1[, text := "n"]
-  non2[, text := "n"]
-  non1[, channel := 1]
-  non2[, channel := 2]
-  begin1 = chan1_joined[, .(end = min(start), start = 0, text = "n", channel = 1)]
-  begin2 = chan2_joined[, .(end = min(start), start = 0, text = "n", channel = 2)]
+  non1 = chan1_joined
+  non1$start1 = non1$end
+  non1$end1 = dplyr::lead(non1$start)
+  non1 = dplyr::select(non1, start = start1, end = end1)
+  non2 = chan2_joined
+  non2$start1 = non2$end
+  non2$end1 = dplyr::lead(non2$start)
+  non2 = dplyr::select(non2, start = start1, end = end1)
+  non1$text = "n"
+  non2$text = "n"
+  non1$channel = 1
+  non2$channel = 2
+  begin1 = dplyr::mutate(chan1_joined, end = min(start), start = 0, text = "n", channel = 1)
+  begin2 = dplyr::mutate(chan2_joined, end = min(start), start = 0, text = "n", channel = 2)
 
   # combine
-  chan1_joined = data.table::rbindlist(list(chan1_joined, non1, begin1), fill = TRUE)
-  chan2_joined = data.table::rbindlist(list(chan2_joined, non2, begin2), fill = TRUE)
-  chan1_joined = chan1_joined[order(start)]
-  chan2_joined = chan2_joined[order(start)]
+  chan1_joined = dplyr::bind_rows(list(chan1_joined, non1, begin1))
+  chan2_joined = dplyr::bind_rows(list(chan2_joined, non2, begin2))
+  chan1_joined = dplyr::arrange(chan1_joined, start)
+  chan2_joined = dplyr::arrange(chan2_joined, start)
 
   # bind
-  final = data.table::rbindlist(list(chan1_joined, chan2_joined))
-  final[, channel := as.numeric(channel)]
-  final[, text := gsub("\\.|\\?", " ", text)]
-  final[, text := gsub("\\,", "", text)]
-  final[, text := gsub("\\bok\\b", "okay", text)]
-  final[, text := gsub("mm\\-hmm", "mmhmm", text)]
-  final[, text := gsub("uh\\-huh", "uhhuh", text)]
-  final[, text := gsub("\\bk\\b", "kay", text)]
+  final = dplyr::bind_rows(list(chan1_joined, chan2_joined))
+  final$channel = as.numeric(final$channel)
+  final$text = gsub("\\.|\\?", " ", final$text)
+  final$text = gsub("\\,", "", final$text)
+  final$text = gsub("\\bok\\b", "okay", final$text)
+  final$text = gsub("mm\\-hmm", "mmhmm", final$text)
+  final$text = gsub("uh\\-huh", "uhhuh", final$text)
+  final$text = gsub("\\bk\\b", "kay", final$text)
 
   # numbers
-  final[, text := convert_numerals_to_words(text)]
+  final$text = convert_numerals_to_words(final$text)
 
   # options
   if (remove_partial)
-    final[, text := gsub("\\b\\w+-\\s*$", "", text)]
+    final$text = gsub("\\b\\w+-\\s*$", "", final$text)
   if (hyphen == "space")
-    final[, text := gsub("\\-", " ", text)]
+    final$text = gsub("\\-", " ", final$text)
   if (hyphen == "remove")
-    final[, text := gsub("\\-", "", text)]
+    final$text = gsub("\\-", "", final$text)
   if (remove_apostrophe)
-    final[, text := gsub("\\'", "", text)]
+    final$text = gsub("\\'", "", final$text)
   if (remove_punct)
-    final[, text := gsub("[^[:alnum:]'\\s-]", " ", text)]
+    final$text = gsub("[^[:alnum:]'\\s-]", " ", final$text)
 
   # clean up
-  final[, text := stringr::str_squish(text)]
-  final[, end := furniture::washer(end, is.na, value = max(end, na.rm=TRUE))]
+  final$text = stringr::str_squish(final$text)
+  final$end = furniture::washer(final$end, is.na, value = max(final$end, na.rm=TRUE))
   return(final)
 }
 

@@ -8,7 +8,6 @@
 #' @param plot should the tuneR::plot() be made for each channel? Default is FALSE.
 #'
 #' @import tuneR
-#' @import data.table
 #' @importFrom stringr str_replace
 #'
 #' @export

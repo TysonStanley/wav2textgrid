@@ -11,7 +11,6 @@
 #'
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom glue glue
-#' @import data.table
 #' @import tuneR
 #' @importFrom seewave cutw
 #' @importFrom fs path
@@ -24,10 +23,10 @@ whispering <- function(ch1, ch2, folder, model_type, prompt, whisp = NULL){
   # grab silence/sounding timings
   chan1_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch1.wav_silences"))
   chan2_silences = readtextgrid::read_textgrid(fs::dir_ls(folder, regexp = "ch2.wav_silences"))
-  data.table::setDT(chan1_silences)
-  data.table::setDT(chan2_silences)
-  timings1 = chan1_silences[text == "sounding", .(annotation_num, start = xmin, end = xmax)]
-  timings2 = chan2_silences[text == "sounding", .(annotation_num, start = xmin, end = xmax)]
+  timings1 = chan1_silences[chan1_silences$text == "sounding", c("annotation_num", "xmin", "xmax")]
+  timings2 = chan2_silences[chan2_silences$text == "sounding", c("annotation_num", "xmin", "xmax")]
+  colnames(timings1) = c("annotation_num", "start", "end")
+  colnames(timings2) = c("annotation_num", "start", "end")
 
   # import channels
   ch1_audio = tuneR::readWave(ch1)
@@ -38,7 +37,7 @@ whispering <- function(ch1, ch2, folder, model_type, prompt, whisp = NULL){
   # create segmented audio
   ch1_files = vector("list", length = nrow(timings1))
   for (i in 1:nrow(timings1)){
-    rows = timings1[i]
+    rows = timings1[i,]
     start = if (rows$start-0.2 < 0) 0 else rows$start-0.2
     end = if (rows$end+0.2 > max(rows$end)) rows$end else rows$end+0.2
     audio_seg1 = seewave::cutw(ch1_audio, f = sample_freq1, from = start, to = end, output = "Wave")
@@ -47,7 +46,7 @@ whispering <- function(ch1, ch2, folder, model_type, prompt, whisp = NULL){
   }
   ch2_files = vector("list", length = nrow(timings2))
   for (i in 1:nrow(timings2)){
-    rows = timings2[i]
+    rows = timings2[i,]
     start = if (rows$start-0.2 < 0) 0 else rows$start-0.2
     end = if (rows$end+0.2 > max(rows$end)) rows$end else rows$end+0.2
     audio_seg2 = seewave::cutw(ch2_audio, f = sample_freq2, from = start, to = end, output = "Wave")
