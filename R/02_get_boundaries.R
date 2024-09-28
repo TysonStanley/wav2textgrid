@@ -128,11 +128,11 @@ check_shared_boundaries <- function(textgrid_files){
 
   # warn if necessary
   if (min_overlap1 > .3 || max_overlap1 > .3){
-    cli::cli_alert_warning("The Silence/Sounding TextGrid for Channel 1 found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
+    cli::cli_alert_warning(paste0("The Silence/Sounding TextGrid for Channel 1 found ", round(max(c(min_overlap1, max_overlap1))*100, 1), "% of the boundaries were identical to Channel 2."))
     cli::cli_alert_warning("This suggests there is an issue with the threshold parameter (or others).")
   }
   if (min_overlap2 > .3 || max_overlap2 > .3){
-    cli::cli_alert_warning("The Silence/Sounding TextGrid for Channel 2 found at least 30% of the boundaries were identical.\nThis can mean there is an issue with the threshold parameter (or others).")
+    cli::cli_alert_warning(paste0("The Silence/Sounding TextGrid for Channel 2 found ", round(max(c(min_overlap2, max_overlap2))*100, 1), "% of the boundaries were identical to Channel 1."))
     cli::cli_alert_warning("This suggests there is an issue with the threshold parameter (or others).")
   }
 }
