@@ -19,6 +19,7 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr arrange
+#' @importFrom tidyr fill
 #' @importFrom readtextgrid read_textgrid
 #' @importFrom stringr str_remove_all
 #' @importFrom stringr str_replace_all
@@ -28,6 +29,7 @@
 #'
 #' @export
 clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, remove_apostrophe, remove_punct){
+  # grab segments
   # grab segments
   chan1 = purrr::map(whispered1, ~.x[["segments"]])
   chan2 = purrr::map(whispered2, ~.x[["segments"]])
@@ -42,6 +44,7 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   chan1_text = stringr::str_squish(stringr::str_remove_all(chan1_text, "\\.|\\,"))
   chan1_text = data.frame(text = chan1_text)
   chan2_text = tolower(chan2_text)
+  chan2_text = stringr::str_squish(stringr::str_remove_all(chan2_text, "\\.|\\,"))
   chan2_text = data.frame(text = chan2_text)
 
   # grab silences file
@@ -63,8 +66,6 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   # channels
   chan1_joined$channel = 1
   chan2_joined$channel = 2
-  chan1_joined = unique(chan1_joined)
-  chan2_joined = unique(chan2_joined)
 
   # add "n" for non-speech
   non1 = chan1_joined
@@ -83,7 +84,9 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   non2 = unique(non2)
 
   begin1 = dplyr::mutate(chan1_joined, end = min(start), start = 0, text = "n", channel = 1)
+  begin1 = dplyr::select(begin1, file, start, end, text, channel)
   begin2 = dplyr::mutate(chan2_joined, end = min(start), start = 0, text = "n", channel = 2)
+  begin2 = dplyr::select(begin2, start, end, text, channel)
   begin1 = unique(begin1)
   begin2 = unique(begin2)
 
@@ -92,6 +95,8 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   chan2_joined = dplyr::bind_rows(list(chan2_joined, non2, begin2))
   chan1_joined = dplyr::arrange(chan1_joined, start)
   chan2_joined = dplyr::arrange(chan2_joined, start)
+  chan1_joined = tidyr::fill(chan1_joined, file:tier_xmax, .direction = "updown")
+  chan2_joined = tidyr::fill(chan2_joined, file:tier_xmax, .direction = "updown")
 
   # bind
   final = dplyr::bind_rows(list(chan1_joined, chan2_joined))

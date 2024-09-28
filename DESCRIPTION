@@ -12,6 +12,7 @@ Description: Allows the direct usage of open source tools including OpenAI's Whi
 Imports: 
     reticulate,
     dplyr,
+    tidyr,
     furniture,
     readtextgrid, 
     seewave,
