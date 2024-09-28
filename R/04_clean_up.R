@@ -63,6 +63,8 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   # channels
   chan1_joined$channel = 1
   chan2_joined$channel = 2
+  chan1_joined = unique(chan1_joined)
+  chan2_joined = unique(chan2_joined)
 
   # add "n" for non-speech
   non1 = chan1_joined
@@ -77,8 +79,13 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   non2$text = "n"
   non1$channel = 1
   non2$channel = 2
+  non1 = unique(non1)
+  non2 = unique(non2)
+
   begin1 = dplyr::mutate(chan1_joined, end = min(start), start = 0, text = "n", channel = 1)
   begin2 = dplyr::mutate(chan2_joined, end = min(start), start = 0, text = "n", channel = 2)
+  begin1 = unique(begin1)
+  begin2 = unique(begin2)
 
   # combine
   chan1_joined = dplyr::bind_rows(list(chan1_joined, non1, begin1))
@@ -114,6 +121,7 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
   # clean up
   final$text = stringr::str_squish(final$text)
   final$end = furniture::washer(final$end, is.na, value = max(final$end, na.rm=TRUE))
+  final = unique(final)
   return(final)
 }
 
