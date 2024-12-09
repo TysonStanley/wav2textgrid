@@ -54,4 +54,5 @@ make_textgrid <- function(data, wav_file){
 
   # Save the TextGrid to a file
   writeLines(textgrid, paste0(str_remove(wav_file, "\\.wav"), "_output.TextGrid"))
+  invisible(textgrid)
 }
