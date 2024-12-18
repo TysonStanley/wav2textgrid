@@ -113,7 +113,7 @@ clean_up <- function(whispered1, whispered2, folder, remove_partial, hyphen, rem
 
   # options
   if (remove_partial)
-    final$text = gsub("\\b\\w+-\\s*$", "", final$text)
+    final$text = gsub("\\b\\w+-\\s*", "", final$text)
   if (hyphen == "space")
     final$text = gsub("\\-", " ", final$text)
   if (hyphen == "remove")
